@@ -30,7 +30,7 @@ C. Downloading
    git clone https://github.com/UMass-LIDS/Tragen.git
 
 D. To cite TRAGEN, please use:
-<link to IMC/ToN paper>
+<link to IMC>
 
 
 
