@@ -11,11 +11,12 @@ A. TRAGEN will be available to use in two forms:
 2) Command Line Interface
 
 I. GUI enabled. 
-
+    
+    Please use python3 ./tragen_gui.py
 
 II. Command Line Interface.
 
-    Please type python3 ./tragen_cli.py -h to learn all the options.
+    Please use python3 ./tragen_cli.py -h to learn all the options.
 
 B. TRAFFIC_MODELER code can be found in traffic_modeler.py. The traffic modeler
    is available only in the command line mode.
