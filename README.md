@@ -15,12 +15,12 @@ In this mode, the user can select a traffic model from the [available traffic mo
 
 ### GUI
 
-To operate in the GUI mode, please use the following command in the home directory of TRAGEN.
+Use the following command in the home directory of TRAGEN to operate in the GUI mode.
    * ``` python3 tragen_gui.py ```
 
-The following image displays the GUI.
+You would see the following GUI. 
 
-
+![GUI](images/TRAGEN_2.png)
 
 
 ### Command line interface 
@@ -28,7 +28,7 @@ The following image displays the GUI.
 ## Produce and submit traffic models
 
 
-3. Developer mode.
+## Developer mode.
 
 We welcome users to suggest modifications to improve the quality of the code or add new features to the existing codebase. Use the developer branch to make edits and submit a change.
 
