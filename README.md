@@ -22,6 +22,13 @@ You would see the following GUI.
 
 ![GUI](images/TRAGEN_2.png)
 
+1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
+2. **Enter trace length**. Specify the number of requests in the synthetic trace.
+3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (Gbps).
+4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table.  The synthetic trace will be similar to  original production traffic with the specified mix. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself, e.g., EU a mix of all traffic served by a cache located in Europe in the production CDN.
+5. **Generate**. Hit the generate button and TRAGEN will start producing the synthetic trace.
+
+The produced synthetic trace is found in the directory ./OUTPUT/
 
 ### Command line interface 
 
