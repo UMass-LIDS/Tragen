@@ -105,7 +105,7 @@ Consider adding your footprint descriptors to our repository. To do so,
 3. Create an entry in [available traffic models](#available-traffic-models).
 4. Update the file FOOTPRINT_DESCRIPTOR/available_fds.txt
 
-## 4. Developer mode.
+## 4. Developer mode
 
 We welcome users to suggest modifications to improve the quality of the code or add new features to the existing codebase. Use the developer branch to make edits and submit a change.
 
