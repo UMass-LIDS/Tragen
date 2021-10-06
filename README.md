@@ -2,18 +2,18 @@
 
 TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed from original traces from Akamai's production CDNs that models the caching properties of the original traces. Using the footprint descriptors, TRAGEN produces a synthetic trace that fits the model.
 
-## Installation
+## 1. Installation
 
 1. TRAGEN requires the installation of [python3](https://www.python.org/downloads/).
 
 2. TRAGEN requires the following packages to be installed - numpy, scipy, pyQt5 and datetime.
    * ``` pip3 install numpy, scipy, pyQt5, datetime ```
 
-## Synthetic trace generation
+## 2. Synthetic trace generation
 
 In this mode, the user can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft. We provide the option of using a GUI or a command line interface.
 
-### GUI
+### 2.1 GUI
 
 Run the following command in the home directory of TRAGEN to operate in the GUI mode.
    * ``` python3 tragen_gui.py ```
@@ -30,7 +30,7 @@ You would see the following GUI.
 
 The produced synthetic trace is found in the directory ./OUTPUT/
 
-### Command line interface (CLI)
+### 2.2 Command line interface (CLI)
 
 Run the following command in the home directory of TRAGEN to operate in the CLI mode.
    * ``` python3 tragen_cli.py -c <config_file> -d <output_directory> ```
@@ -62,28 +62,28 @@ The config file is to be in the json format. An example of a config file is:
    * The field traffic class should be one of the traffic classes specified in the [available traffic models](#available-traffic-models).
    * The traffic_volume field specifies the traffic volume for the traffic class.
 
-## Produce and submit traffic models
+## 3. Generate and submit traffic models
 
 
-## Developer mode.
+## 4. Developer mode.
 
 We welcome users to suggest modifications to improve the quality of the code or add new features to the existing codebase. Use the developer branch to make edits and submit a change.
 
 
-## Available traffic models
+## 5. Available traffic models
 
 
-## Cite
+## 6. Cite
 
 Please cite the following publication on using TRAGEN for your work.
 
 TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations.
 In ACM Internet Measurement Conference (IMC ’21), November 2–4, 2021, Virtual Event, USA. ACM,New York, NY, USA, 14 pages, https://doi.org/10.1145/3487552.3487845
 
-## References
+## 7. References
 
 <a id="1">[1]</a> 
 Sundarrajan, Aditya, Mingdong Feng, Mangesh Kasbekar, and Ramesh K. Sitaraman. "Footprint descriptors: Theory and practice of cache provisioning in a global cdn." In Proceedings of the 13th International Conference on emerging Networking EXperiments and Technologies, pp. 55-67. 2017.
 
-## Acknowledgements
+## 8. Acknowledgements
 This work was supported in part by NSF grants CNS-1763617 and CNS-1901137.
