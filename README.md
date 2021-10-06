@@ -11,7 +11,13 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 
 ## 2. Synthetic trace generation
 
-In this mode, the user can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft. We provide the option of using a GUI or a command line interface.
+User can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model.
+
+1. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes.
+
+2. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
+
+We provide the option of using a GUI or a command line interface.
 
 ### 2.1. GUI
 
