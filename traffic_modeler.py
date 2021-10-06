@@ -89,7 +89,6 @@ class cache:
                 self.no_del += 1
             except:
                 print("no of deletions : ", self.no_del, obj, o)
-                asdf
 
         return sd, dt
                 
