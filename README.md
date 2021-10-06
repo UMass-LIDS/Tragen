@@ -1,6 +1,6 @@
 ## TRAGEN
 
-TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]] (#1) computed from original traces from Akamai's production CDNs that models the caching properties of the original traces. Using the footprint descriptors, TRAGEN produces a synthetic trace that fits the model.
+TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [1] (#1) computed from original traces from Akamai's production CDNs that models the caching properties of the original traces. Using the footprint descriptors, TRAGEN produces a synthetic trace that fits the model.
 
 ## Installation
 
@@ -15,7 +15,7 @@ In this mode, the user can select a traffic model from the [available traffic mo
 
 ### GUI
 
-Use the following command in the home directory of TRAGEN to operate in the GUI mode.
+Run the following command in the home directory of TRAGEN to operate in the GUI mode.
    * ``` python3 tragen_gui.py ```
 
 You would see the following GUI. 
@@ -30,7 +30,14 @@ You would see the following GUI.
 
 The produced synthetic trace is found in the directory ./OUTPUT/
 
-### Command line interface 
+### Command line interface (CLI)
+
+Run the following command in the home directory of TRAGEN to operate in the CLI mode.
+   * ``` python3 tragen_cli.py -c <config_file> -d <output_directory> ```
+
+The config file is to be in the XML format. An example of a config file is:
+
+
 
 ## Produce and submit traffic models
 
@@ -43,13 +50,16 @@ We welcome users to suggest modifications to improve the quality of the code or 
 ## Available traffic models
 
 
-
 ## Cite
 
+Please cite the following publication on using TRAGEN for your work.
+
+TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations.
+In ACM Internet Measurement Conference (IMC ’21), November 2–4, 2021, Virtual Event, USA. ACM,New York, NY, USA, 14 pages, https://doi.org/10.1145/3487552.3487845
 
 ## References
 
-<a id="1">[1]</a> 
+<a id="1">1</a> 
 Sundarrajan, Aditya, Mingdong Feng, Mangesh Kasbekar, and Ramesh K. Sitaraman. "Footprint descriptors: Theory and practice of cache provisioning in a global cdn." In Proceedings of the 13th International Conference on emerging Networking EXperiments and Technologies, pp. 55-67. 2017.
 
 ## Acknowledgements
