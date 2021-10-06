@@ -114,24 +114,24 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 The currently available traffic models are:
 
-| |Traffic class| Description| Gbps | reqs/s| Traffic type|
-|:-|:-:|:-------------------------------------------------------------|:-:|:-:|:--:|
-|1|v|traffic collected from servers predominantly serving video traffic|1.5|400.2|Video|
-|2|w|traffic collected from servers predominantly serving web traffic|2.29|5860|Web|
-|3|eu|traffic collected from a cluster of servers serving a mix of traffic|1.31|403|Mix|
-|4|tc|traffic collected from a cluster of servers serving a mix of traffic|0.36|820|Mix|
-|5|eu-0|subset of eu trace corresponding to media traffic|0.012|20.64|SocialMedia|
-|6|eu-1|subset of eu trace corresponding to media traffic|0.48|70.44|SocialMedia|
-|8|eu-3|subset of eu trace corresponding to media traffic|0.036|59.2|SocialMedia|
-|10|eu-5|subset of eu trace corresponding to media traffic|0.434|42.82|SocialMedia|
-|11|eu-6|subset of eu trace corresponding to media traffic|0.026|23.55|SocialMedia|
-|12|eu-7|subset of eu trace corresponding to media traffic|0.00086|24|Web|
-|13|eu-8|subset of eu trace corresponding to media traffic|0.027|82.74|SocialMedia|
-|14|eu-9|subset of eu trace corresponding to media traffic|0.756|5.38|Web|
-|15|tc-0|subset of tc trace that corresponds to downloads|70|22.9|Download|
-|15|tc-1|subset of tc trace that corresponds to images|8|243|Images|
-|16|tc-2|subset of tc trace that corresponds to media|40|141|Media|
-|17|tc-3|subset of tc trace that corresponds to web|250|406|Web|
+| |Traffic class| Description| Gbps | Reqs/s| Traffic type|
+|:-|:-:|:-------------------------------------------------------------:|:-:|:-:|:--:|
+|1|V|Traffic collected from servers predominantly serving video traffic|1.5|400.2|Video|
+|2|W|Traffic collected from servers predominantly serving web traffic|2.29|5860|Web|
+|3|EU|Traffic collected from a cluster of servers serving a mix of traffic|1.31|403|Mix|
+|4|TC|Traffic collected from a cluster of servers serving a mix of traffic|0.36|820|Mix|
+|5|EU-0|Subset of eu trace corresponding to media traffic|0.012|20.64|SocialMedia|
+|6|EU-1|Subset of eu trace corresponding to media traffic|0.48|70.44|SocialMedia|
+|8|EU-3|Subset of eu trace corresponding to media traffic|0.036|59.2|SocialMedia|
+|10|EU-5|Subset of eu trace corresponding to media traffic|0.434|42.82|SocialMedia|
+|11|EU-6|Subset of eu trace corresponding to media traffic|0.026|23.55|SocialMedia|
+|12|EU-7|Subset of eu trace corresponding to media traffic|0.00086|24|Web|
+|13|EU-8|Subset of eu trace corresponding to media traffic|0.027|82.74|SocialMedia|
+|14|EU-9|Subset of eu trace corresponding to media traffic|0.756|5.38|Web|
+|15|EU-0|Subset of tc trace that corresponds to downloads|70|22.9|Download|
+|15|EU-1|Subset of tc trace that corresponds to images|8|243|Images|
+|16|EU-2|Subset of tc trace that corresponds to media|40|141|Media|
+|17|EU-3|Subset of tc trace that corresponds to web|250|406|Web|
 
 ## 6. Citation
 
