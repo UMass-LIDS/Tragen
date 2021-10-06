@@ -59,7 +59,7 @@ In ACM Internet Measurement Conference (IMC ’21), November 2–4, 2021, Virtua
 
 ## References
 
-<a id="1">1</a> 
+<a id="1">[1]</a> 
 Sundarrajan, Aditya, Mingdong Feng, Mangesh Kasbekar, and Ramesh K. Sitaraman. "Footprint descriptors: Theory and practice of cache provisioning in a global cdn." In Proceedings of the 13th International Conference on emerging Networking EXperiments and Technologies, pp. 55-67. 2017.
 
 ## Acknowledgements
