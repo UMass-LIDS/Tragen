@@ -11,7 +11,7 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 
 ## Synthetic trace generation
 
-In this mode, the user can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes, eg., images from Amazon and software downloads from Microsoft. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft. TRAGEN then produces a synthetic trace that is representative of the traffic mix. We provide the option of using a GUI or a command line interface.
+In this mode, the user can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft. We provide the option of using a GUI or a command line interface.
 
 ### GUI
 
@@ -35,9 +35,25 @@ The produced synthetic trace is found in the directory ./OUTPUT/
 Run the following command in the home directory of TRAGEN to operate in the CLI mode.
    * ``` python3 tragen_cli.py -c <config_file> -d <output_directory> ```
 
-The config file is to be in the XML format. An example of a config file is:
+The config file is to be in the json format. An example of a config file is:
 
-
+```json
+{
+    "Trace_length": "100000000",
+    "Hitrate_type": "bhr",
+    "Input_unit"  : "reqs/s",
+    "Traffic_classes" : [
+        {
+            "traffic_class": "v",
+            "traffic_volume": "1000"
+        },
+        {
+            "traffic_class":"w",
+            "traffic_volume":"2000"
+        }
+    ]
+}
+```
 
 ## Produce and submit traffic models
 
