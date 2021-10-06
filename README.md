@@ -114,8 +114,8 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 The currently available traffic models are:
 
-| |Traffic class| Description| Gbps | Reqs/s| Traffic type|
-|:-|:-:|:-------------------------------------------------------------:|:-:|:-:|:--:|
+| |Traffic class|                        Description| Gbps | Reqs/s| Traffic type|
+|:-|:-:|:-------------------------------------------------------------|:-:|:-:|:--:|
 |1|V|Traffic collected from servers predominantly serving video traffic|1.5|400.2|Video|
 |2|W|Traffic collected from servers predominantly serving web traffic|2.29|5860|Web|
 |3|EU|Traffic collected from a cluster of servers serving a mix of traffic|1.31|403|Mix|
