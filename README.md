@@ -25,7 +25,7 @@ You would see the following GUI.
 1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
 2. **Enter trace length**. Specify the number of requests in the synthetic trace.
 3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (Gbps).
-4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table.  The synthetic trace will be similar to  original production traffic with the specified mix. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself, e.g., EU a mix of all traffic served by a cache located in Europe in the production CDN.
+4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself.
 5. **Generate**. Hit the generate button and TRAGEN will start producing the synthetic trace.
 
 The produced synthetic trace is found in the directory ./OUTPUT/
@@ -54,6 +54,13 @@ The config file is to be in the json format. An example of a config file is:
     ]
 }
 ```
+
+1. **Trace_length**. Specify the number of requests in the synthetic trace.
+2. **Hitrate_type**. Enter rhr or bhr if the synthetic trace is to have Request hit rate or Byte hit rate, respectively, as the original.
+3. **Input_unit**. Enter the unit with which the traffic volume for each traffic class will be specified - reqs/s or Gbps.
+4. **Traffic_classes**. A map of traffic_class and its respective traffic volume. 
+   * The field traffic class should be one of the traffic classes specified in the [available traffic models](#available-traffic-models).
+   * The traffic_volume field specifies the traffic volume for the traffic class.
 
 ## Produce and submit traffic models
 
