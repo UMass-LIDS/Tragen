@@ -114,7 +114,6 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 The currently available traffic models are:
 
-```
 | |Traffic class| Description| Gbps | reqs/s| Traffic type|
 |:-|:-:|:-------------------------------------------------------------:|:-:|:-:|--:|
 |1|v|traffic collected from servers predominantly serving video traffic|1.5|400.2|Video|
@@ -133,7 +132,6 @@ The currently available traffic models are:
 |15|tc-1|subset of tc trace that corresponds to images|8|243|Images|
 |16|tc-2|subset of tc trace that corresponds to media|40|141|Media|
 |17|tc-3|subset of tc trace that corresponds to web|250|406|Web|
-```
 
 ## 6. Citation
 
