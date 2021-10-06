@@ -70,9 +70,9 @@ The produced synthetic trace is in the specified <output_directory>.
 
 ## 3. Generate and submit traffic models
 
-#### 3.1 Generate footprint descriptors
+#### 3.1 Generate traffic models
 
-Users can generate footprint descriptor traffic models from their own original traces. The original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, object_size. For example,
+Users can generate footprint descriptor traffic models and object size distribution from their own original traces. The original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, object_size. For example,
 
 ```
 1532702631,0,26624
@@ -106,6 +106,7 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 ## 5. Available traffic models
 
+The available traffic models are:
 
 ## 6. Citation
 
