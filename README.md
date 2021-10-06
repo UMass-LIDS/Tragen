@@ -7,9 +7,9 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 1. TRAGEN requires the installation of [python3](https://www.python.org/downloads/).
 
 2. TRAGEN requires the following packages to be installed - numpy, scipy, pyQt5 and datetime.
-       * ``` pip3 install numpy, scipy, pyQt5, datetime ```
+   * ``` pip3 install numpy, scipy, pyQt5, datetime ```
 
-## Synthetic trace generation.
+## Synthetic trace generation
 
 In this mode, the user can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes, eg., images from Amazon and software downloads from Microsoft. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft. TRAGEN then produces a synthetic trace that is representative of the traffic mix. We provide the option of using a GUI or a command line interface.
 
