@@ -35,7 +35,9 @@ The produced synthetic trace is found in the directory ./OUTPUT/
 Run the following command in the home directory of TRAGEN to operate in the CLI mode.
    * ``` python3 tragen_cli.py -c <config_file> -d <output_directory> ```
 
-2.2.1 The config file is to be in the json format. An example of a config file is:
+#### 2.2.1. Config file
+
+The config file is to be in the json format. An example of a config file is:
 
 ```json
 {
@@ -62,11 +64,15 @@ Run the following command in the home directory of TRAGEN to operate in the CLI 
    * traffic_class should be one of the traffic classes specified in the [available traffic models](#available-traffic-models).
    * traffic_volume field specifies the traffic volume for the traffic class.
 
-2.2.2 The produced synthetic trace is in the specified <output_directory>.
+#### 2.2.2. Output
+
+The produced synthetic trace is in the specified <output_directory>.
 
 ## 3. Generate and submit traffic models
 
-3.1 Users can generate footprint descriptor traffic models from their own original traces. The original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, object_size. For example,
+#### 3.1 Generate footprint descriptors
+
+Users can generate footprint descriptor traffic models from their own original traces. The original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, object_size. For example,
 
 ```
 1532702631,0,26624
@@ -81,10 +87,10 @@ Run the following command in the home directory of TRAGEN to operate in the CLI 
 
 To generate a footprint descriptor model use the following command,
    * ``` python3 traffic_modeler.py <path_to_original_trace> <output_dir>```
-
+   
 The output_dir contains the footprint descriptor and the byte-weighted footprint descriptors for the specified trace.
 
-3.2 Submitting traffic models
+#### 3.2. Submitting traffic models
 
 Consider adding your footprint descriptors to our repository. To do so,
 
