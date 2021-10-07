@@ -11,7 +11,7 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 
 ## 2. Use TRAGEN to generate synthetic traces
 
-User can select a traffic model from the [available traffic models](#5available-traffic-models) to produce a synthetic trace that fits the model.
+User can select a traffic model from the [available traffic models](5available-traffic-models) to produce a synthetic trace that fits the model.
 
 1. Select a model that is described as *Mix* to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. 
 
