@@ -1,6 +1,12 @@
 ## TRAGEN
 
-TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed using original traces from Akamai's production CDNs. Footprint descriptor models capture the caching properties of the original traces. Using footprint descriptors, TRAGEN produces a synthetic trace that fits the model.
+TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed using original traces from Akamai's production CDNs. Footprint descriptor models capture the caching properties of the original traces. Using footprint descriptors, TRAGEN produces a synthetic trace that fits the model. More detailed information about TRAGEN can be found in the paper below.
+
+Please cite the below paper on using TRAGEN.
+
+TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations.
+In ACM Internet Measurement Conference (IMC ’21), November 2–4, 2021, Virtual Event, USA. ACM,New York, NY, USA, 14 pages, https://doi.org/10.1145/3487552.3487845
+
 
 ## 1. Installation
 
@@ -114,36 +120,30 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 The currently available traffic models are:
 
-| |Traffic class|                        Description| Traffic volume (Gbps) | Request rate (Reqs/s) | Traffic type|
-|:-|:-:|:-------------------------------------------------------------|:-:|:-:|:--:|
-|1|V|Traffic collected from servers predominantly serving video traffic|1.5|400.2|Video|
-|2|W|Traffic collected from servers predominantly serving web traffic|2.29|5860|Web|
-|3|EU|Traffic collected from a cluster of servers serving a mix of traffic|1.31|403|Mix|
-|4|TC|Traffic collected from a cluster of servers serving a mix of traffic|0.36|820|Mix|
-|5|EU-0|Subset of eu trace corresponding to media traffic|0.012|20.64|SocialMedia|
-|6|EU-1|Subset of eu trace corresponding to media traffic|0.48|70.44|SocialMedia|
-|8|EU-3|Subset of eu trace corresponding to media traffic|0.036|59.2|SocialMedia|
-|10|EU-5|Subset of eu trace corresponding to media traffic|0.434|42.82|SocialMedia|
-|11|EU-6|Subset of eu trace corresponding to media traffic|0.026|23.55|SocialMedia|
-|12|EU-7|Subset of eu trace corresponding to media traffic|0.00086|24|Web|
-|13|EU-8|Subset of eu trace corresponding to media traffic|0.027|82.74|SocialMedia|
-|14|EU-9|Subset of eu trace corresponding to media traffic|0.756|5.38|Web|
-|15|TC-0|Subset of tc trace that corresponds to downloads|70|22.9|Download|
-|15|TC-1|Subset of tc trace that corresponds to images|8|243|Images|
-|16|TC-2|Subset of tc trace that corresponds to media|40|141|Media|
-|17|TC-3|Subset of tc trace that corresponds to web|250|406|Web|
+| |Traffic class|                        Description| Traffic type|
+|:-|:-:|:-------------------------------------------------------------|:--:|
+|1|V|Traffic collected from servers predominantly serving video traffic|Video|
+|2|W|Traffic collected from servers predominantly serving web traffic|Web|
+|3|EU|Traffic collected from a cluster of servers serving a mix of traffic|Mix|
+|4|TC|Traffic collected from a cluster of servers serving a mix of traffic|Mix|
+|5|EU-0|Subset of eu trace corresponding to media traffic|SocialMedia|
+|6|EU-1|Subset of eu trace corresponding to media traffic|SocialMedia|
+|8|EU-3|Subset of eu trace corresponding to media traffic|SocialMedia|
+|10|EU-5|Subset of eu trace corresponding to media traffic|SocialMedia|
+|11|EU-6|Subset of eu trace corresponding to media traffic|SocialMedia|
+|12|EU-7|Subset of eu trace corresponding to media traffic|Web|
+|13|EU-8|Subset of eu trace corresponding to media traffic|SocialMedia|
+|14|EU-9|Subset of eu trace corresponding to media traffic|Web|
+|15|TC-0|Subset of tc trace that corresponds to downloads|Download|
+|15|TC-1|Subset of tc trace that corresponds to images|Images|
+|16|TC-2|Subset of tc trace that corresponds to media|Media|
+|17|TC-3|Subset of tc trace that corresponds to web|Web|
 
-## 6. Please Cite
 
-Please cite the following publication on using TRAGEN for your work.
-
-TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations.
-In ACM Internet Measurement Conference (IMC ’21), November 2–4, 2021, Virtual Event, USA. ACM,New York, NY, USA, 14 pages, https://doi.org/10.1145/3487552.3487845
-
-## 7. References
+## 6. References
 
 <a id="1">[1]</a> 
 Sundarrajan, Aditya, Mingdong Feng, Mangesh Kasbekar, and Ramesh K. Sitaraman. "Footprint descriptors: Theory and practice of cache provisioning in a global cdn." In Proceedings of the 13th International Conference on emerging Networking EXperiments and Technologies, pp. 55-67. 2017.
 
-## 8. Acknowledgements
+## 7. Acknowledgements
 This work was supported in part by NSF grants CNS-1763617 and CNS-1901137.
