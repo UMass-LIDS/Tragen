@@ -128,10 +128,10 @@ The currently available traffic models are:
 |12|EU-7|Subset of eu trace corresponding to media traffic|0.00086|24|Web|
 |13|EU-8|Subset of eu trace corresponding to media traffic|0.027|82.74|SocialMedia|
 |14|EU-9|Subset of eu trace corresponding to media traffic|0.756|5.38|Web|
-|15|EU-0|Subset of tc trace that corresponds to downloads|70|22.9|Download|
-|15|EU-1|Subset of tc trace that corresponds to images|8|243|Images|
-|16|EU-2|Subset of tc trace that corresponds to media|40|141|Media|
-|17|EU-3|Subset of tc trace that corresponds to web|250|406|Web|
+|15|TC-0|Subset of tc trace that corresponds to downloads|70|22.9|Download|
+|15|TC-1|Subset of tc trace that corresponds to images|8|243|Images|
+|16|TC-2|Subset of tc trace that corresponds to media|40|141|Media|
+|17|TC-3|Subset of tc trace that corresponds to web|250|406|Web|
 
 ## 6. Please Cite
 
