@@ -72,7 +72,7 @@ The config file is to be in the json format. An example of a config file is:
 1. **Trace_length**. Specify the number of requests in the synthetic trace.
 2. **Hitrate_type**. Enter rhr or bhr if the synthetic trace is to have Request hit rate or Byte hit rate, respectively, as the original.
 3. **Input_unit**. Enter the unit with which the traffic volume for each traffic class will be specified - reqs/s or Gbps.
-4. **Traffic_classes**. A map of traffic_class and its respective traffic volume. 
+4. **Traffic_classes**. Create a custom traffic mix by providing a list of traffic classes and their respective traffic volumes. 
    * traffic_class should be one of the traffic classes specified in the [available traffic models](#5-available-traffic-models).
    * traffic_volume field specifies the traffic volume for the traffic class.
 
@@ -84,7 +84,7 @@ The produced synthetic trace is in the specified <output_directory>.
 
 #### 3.1 Generate traffic models
 
-To generate a footprint descriptor traffic model and an object size distribution from your own original traces provide the original trace in a file with the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size. Now, seperate each request by a newline. For example,
+A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. To generate traffic models for your own original traces provide the original trace in a file in the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size. Now, each request is on a new line. For example,
 
 ```
 1532702631,0,26624
@@ -118,7 +118,7 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 ## 5. Available traffic models
 
-A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. The currently available traffic models are:
+The currently available traffic models are:
 
 | |Traffic class|                        Description| Traffic type|
 |:-|:-:|:-------------------------------------------------------------|:--:|
