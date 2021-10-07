@@ -208,16 +208,16 @@ f.close()
 
 ## Write the other stats into the file
 ## Write footprint descriptor
-f = open(output_directory + "/footprint_desc_all.txt", "w")
+f = open(output_directory + "/fd.txt", "w")
 write_footprint_descriptor(f, total_reqs, total_bytes_req, start_tm, end_tm, total_misses, bytes_miss, sd_distances)
 
 ## Write byte-footprint descriptor
-f = open(output_directory + "/byte_footprint_desc_all.txt", "w")
+f = open(output_directory + "/bfd.txt", "w")
 write_byte_footprint_descriptor(f, total_reqs, total_bytes_req, start_tm, end_tm, total_misses, bytes_miss, sd_byte_distances)
     
 ## Write the joint probability distribution of average interarrival time for the object
 ## and its size
-f = open(output_directory + "/iat_sz_all.txt", "w")
+f = open(output_directory + "/sz.txt", "w")
 write_iat_sz_dst(f, obj_iats, obj_sizes)
 
 

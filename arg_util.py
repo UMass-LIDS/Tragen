@@ -91,7 +91,7 @@ def read_config_file(config_file):
             traffic_volume = tc["traffic_volume"]
         traffic_ratio.append(traffic_volume)
 
-    args.traffic_classes = ":".join([str(x) for x in traffic_classes])
+    args.traffic_classes = ":".join([str(x).lower() for x in traffic_classes])
     args.traffic_ratio   = ":".join([str(x) for x in traffic_ratio])
 
     return args
