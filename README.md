@@ -133,7 +133,7 @@ The currently available traffic models are:
 |16|EU-2|Subset of tc trace that corresponds to media|40|141|Media|
 |17|EU-3|Subset of tc trace that corresponds to web|250|406|Web|
 
-## 6. Citation
+## 6. Please Cite
 
 Please cite the following publication on using TRAGEN for your work.
 
