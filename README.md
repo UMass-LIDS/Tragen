@@ -84,10 +84,10 @@ The produced synthetic trace is in the specified <output_directory>.
 
 #### 3.1 Generate traffic models
 
-A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. To generate traffic models for your own original traces provide the original trace in a file in the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size. Now, each request is on a new line. For example,
+A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. To generate traffic models for your own original traces provide the original trace in a file in the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size (in Kb). Now, each request is on a new line. For example,
 
 ```
-timestamp, object_id, object size
+timestamp, object_id, object_size (Kb)
 1532702631,0,26624
 1532702631,1,12288
 1532702631,2,26624
