@@ -1,30 +1,30 @@
 ## TRAGEN
 
-TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed from original traces from Akamai's production CDNs that models the caching properties of the original traces. Using the footprint descriptors, TRAGEN produces a synthetic trace that fits the model.
+TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed using original traces from Akamai's production CDNs. Footprint descriptor models the caching properties of the original traces. Using footprint descriptors, TRAGEN produces a synthetic trace that fits the model.
 
 ## 1. Installation
 
-1. TRAGEN requires the installation of [python3](https://www.python.org/downloads/).
+1. Install [python3](https://www.python.org/downloads/).
 
-2. TRAGEN requires the following packages to be installed - numpy, scipy, pyQt5 and datetime.
+2. Install the following packages - numpy, scipy, pyQt5 and datetime.
    * ``` pip3 install numpy, scipy, pyQt5, datetime ```
 
-## 2. Synthetic trace generation
+## 2. Use TRAGEN to generate synthetic traces
 
 User can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model.
 
-1. The user can select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes.
+1. Select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. 
 
-2. Or, the user can select multiple traffic models and provide the required traffic volumes for each selected option to create his/her own traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
+2. Or, select multiple traffic models and provide the required traffic volumes for each selected option to create a custom traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
 
-We provide the option of using a GUI or a command line interface.
+The user can use a GUI or a Command Line Interface.
 
 ### 2.1. GUI
 
-Run the following command in the home directory of TRAGEN to operate in the GUI mode.
+Run the following command in the home directory of TRAGEN to display the GUI.
    * ``` python3 tragen_gui.py ```
 
-You would see the following GUI. 
+Below is a screenshot of the GUI. 
 
 ![GUI](images/TRAGEN_2.png)
 
@@ -78,7 +78,7 @@ The produced synthetic trace is in the specified <output_directory>.
 
 #### 3.1 Generate traffic models
 
-Users can generate footprint descriptor traffic models and object size distribution from their own original traces. The original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, object_size. For example,
+To generate a footprint descriptor traffic model and object size distribution from your own original traces,  the original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, and object_size. For example,
 
 ```
 1532702631,0,26624
@@ -91,10 +91,10 @@ Users can generate footprint descriptor traffic models and object size distribut
 	.
 ```
 
-To generate a footprint descriptor model use the following command,
+To generate a footprint descriptors and object size distribution use the following command,
    * ``` python3 traffic_modeler.py <path_to_original_trace> <output_dir>```
    
-The output_dir contains the footprint descriptor and the byte-weighted footprint descriptors for the specified trace.
+The output_dir contains the footprint descriptor (fd.txt), byte-weighted footprint descriptors (bfd.txt) and the object size distribution (sz.txt) for the specified trace.
 
 #### 3.2. Submitting traffic models
 
