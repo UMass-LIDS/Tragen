@@ -13,7 +13,7 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 
 User can select a traffic model from the [available traffic models](#available-traffic-models) to produce a synthetic trace that fits the model.
 
-1. Select a model that is described as Mix to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. 
+1. Select a model that is described as *Mix* to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. 
 
 2. Or, select multiple traffic models and provide the required traffic volumes for each selected option to create a custom traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
 
@@ -78,7 +78,7 @@ The produced synthetic trace is in the specified <output_directory>.
 
 #### 3.1 Generate traffic models
 
-To generate a footprint descriptor traffic model and object size distribution from your own original traces,  the original trace should be in file with each request on a new line. Each request is comma seperated list of timestamp, object_id, and object_size. For example,
+To generate a footprint descriptor traffic model and an object size distribution from your own original traces provide the original trace in a file with the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size. Now, seperate each request by a newline. For example,
 
 ```
 1532702631,0,26624
@@ -91,7 +91,7 @@ To generate a footprint descriptor traffic model and object size distribution fr
 	.
 ```
 
-To generate a footprint descriptors and object size distribution use the following command,
+Use the following command,
    * ``` python3 traffic_modeler.py <path_to_original_trace> <output_dir>```
    
 The output_dir contains the footprint descriptor (fd.txt), byte-weighted footprint descriptors (bfd.txt) and the object size distribution (sz.txt) for the specified trace.
