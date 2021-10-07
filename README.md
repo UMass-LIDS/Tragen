@@ -11,7 +11,7 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 
 ## 2. Use TRAGEN to generate synthetic traces
 
-User can select a traffic model from the [available traffic models](5available-traffic-models) to produce a synthetic trace that fits the model.
+User can select a traffic model from the [available traffic models](#5-available-traffic-models) to produce a synthetic trace that fits the model.
 
 1. Select a model that is described as *Mix* to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. 
 
@@ -67,7 +67,7 @@ The config file is to be in the json format. An example of a config file is:
 2. **Hitrate_type**. Enter rhr or bhr if the synthetic trace is to have Request hit rate or Byte hit rate, respectively, as the original.
 3. **Input_unit**. Enter the unit with which the traffic volume for each traffic class will be specified - reqs/s or Gbps.
 4. **Traffic_classes**. A map of traffic_class and its respective traffic volume. 
-   * traffic_class should be one of the traffic classes specified in the [available traffic models](#5available-traffic-models).
+   * traffic_class should be one of the traffic classes specified in the [available traffic models](#5-available-traffic-models).
    * traffic_volume field specifies the traffic volume for the traffic class.
 
 #### 2.2.2. Output
@@ -102,7 +102,7 @@ Consider adding your footprint descriptors to our repository. To do so,
 
 1. Create a directory FOOTPRINT_DESCRIPTOR/<your_traffic_class_name>.
 2. Copy the footprint descriptor (named as fd.txt), byte-weighted footprint descriptor (named as bfd.txt) and the object size distribution (sz.txt) to FOOTPRINT_DESCRIPTOR/<your_traffic_class_name>/.
-3. Create an entry in [available traffic models](#5available-traffic-models).
+3. Create an entry in [available traffic models](#5-available-traffic-models).
 4. Update the file FOOTPRINT_DESCRIPTOR/available_fds.txt
 
 ## 4. Developer mode
