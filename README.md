@@ -112,7 +112,7 @@ We welcome users to suggest modifications to improve the quality of the code or 
 
 ## 5. Available traffic models
 
-The currently available traffic models are:
+A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. The currently available traffic models are:
 
 | |Traffic class|                        Description| Traffic volume (Gbps) | Request rate (Reqs/s) | Traffic type|
 |:-|:-:|:-------------------------------------------------------------|:-:|:-:|:--:|
