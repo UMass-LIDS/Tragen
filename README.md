@@ -1,8 +1,8 @@
 ## TRAGEN
 
-TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed using original traces from Akamai's production CDNs. Footprint descriptor models capture the caching properties of the original traces. Using footprint descriptors, TRAGEN produces a synthetic trace that fits the model. More detailed information about TRAGEN can be found in the paper below.
+TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed using original traces from Akamai's production CDNs. Footprint descriptor models capture the caching properties of the original traces. Using footprint descriptors, TRAGEN produces a synthetic trace that fits the model. 
 
-Please cite the below paper on using TRAGEN.
+More detailed information about TRAGEN can be found in the paper below. Please also use the following bibliographic information to cite the work when TRAGEN is used.
 
 TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations.
 In ACM Internet Measurement Conference (IMC ’21), November 2–4, 2021, Virtual Event, USA. ACM,New York, NY, USA, 14 pages, https://doi.org/10.1145/3487552.3487845
