@@ -4,6 +4,7 @@ from collections import defaultdict
 import datetime
 import os
 import time
+import sys
 
 class TraceGenerator():
     def __init__(self, trafficMixer, args):
@@ -162,6 +163,7 @@ class TraceGenerator():
             fp.write('\n'.join(sys.argv[1:]))
         
         self.assign_timestamps(c_trace, sizes, fd.byte_rate, f)
+        sys.exit(0)
             
     def assign_timestamps(self, c_trace, sizes, byte_rate, f):
         timestamp = 0
