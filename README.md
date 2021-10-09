@@ -4,7 +4,7 @@ TRAGEN is a tool that produces synthetic traces that have similar caching proper
 
 More detailed information about TRAGEN can be found in the [paper at this link](https://groups.cs.umass.edu/ramesh/wp-content/uploads/sites/3/2021/10/imc2021-final270.pdf). Please use the full citation information below when using TRAGEN in your work.
 
-TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations, by Anirudh Sabnis and Ramesh K. Sitaraman, ACM Internet Measurement Conference (IMC), November 2021.
+[TRAGEN: A Synthetic Trace Generator for Realistic Cache Simulations](https://groups.cs.umass.edu/ramesh/wp-content/uploads/sites/3/2021/10/imc2021-final270.pdf), by Anirudh Sabnis and Ramesh K. Sitaraman, ACM Internet Measurement Conference (IMC), November 2021.
 
 
 ## 1. Installation
