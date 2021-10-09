@@ -77,17 +77,17 @@ class FD():
             del self.st[t][s]
             
         self.requests_miss += pr*self.no_reqs
-        self.bytes_miss += pr*self.total_bytes
+        self.bytes_miss    += pr*self.total_bytes
                     
     
     def scale(self, scale_factor, iat_gran):
         
-        self.no_reqs *= scale_factor
-        self.total_bytes *= scale_factor
+        self.no_reqs       *= scale_factor
+        self.total_bytes   *= scale_factor
         self.requests_miss *= scale_factor
-        self.bytes_miss *= scale_factor
-        self.req_rate *= scale_factor
-        self.byte_rate *= scale_factor
+        self.bytes_miss    *= scale_factor
+        self.req_rate      *= scale_factor
+        self.byte_rate     *= scale_factor
 
         st_sub = defaultdict(lambda : defaultdict(float))
         
@@ -118,7 +118,7 @@ class FD():
         for sd in self.sd_keys:
             self.sd_vals.append(SD[sd])
 
-        print("sampling setup done")
+        print("Finished reading the input models")
 
             
     def sample(self, n):

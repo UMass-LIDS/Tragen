@@ -45,8 +45,9 @@ class TraceGenerator():
         while total_sz < MAX_SD:
             total_sz += sizes[total_objects]
             total_objects += 1
-            if total_objects % 10000 == 0:
-                print("using ", total_objects, total_sz)
+            if total_objects % 100000 == 0:
+                print("Initializing the LRU stack ... ", int(100 * float(total_sz)/MAX_SD), "% complete")
+            
 
         ## debug file
         debug = open("OUTPUT/debug.txt", "w")
@@ -103,7 +104,10 @@ class TraceGenerator():
             
             n  = node(curr.obj_id, curr.s)        
             n.set_b()            
+
+            ## Add the object at the top of the list to the trace
             c_trace.append(n.obj_id)        
+
             if curr.obj_id > curr_max_seen:
                 curr_max_seen = curr.obj_id
             
@@ -118,7 +122,7 @@ class TraceGenerator():
                 
                 local_uniq_bytes = 0
 
-                debug.write("debugline : " + str(local_uniq_bytes) + " " + str(sd) + " " + str(root.s) + " " + str(descrepency) + "\n")
+                #debug.write("debugline : " + str(local_uniq_bytes) + " " + str(sd) + " " + str(root.s) + " " + str(descrepency) + "\n")
 
                 if n.parent != None :
                     root = n.parent.rebalance(debug)
@@ -146,7 +150,7 @@ class TraceGenerator():
 
             del_nodes = curr.cleanUpAfterInsertion(sd, n, debug)        
 
-            if i % 10001 == 0:
+            if i % 100000 == 0:
                 self.log_file.write("Trace computed : " +  str(i) + " " +  str(datetime.datetime.now()) +  " " + str(root.s) + " " + str(total_objects) + " " + str(curr_max_seen) + " fail : " + str(fail) + " sz added : " + str(sz_added) + " sz_removed : " + str(sz_removed) + "\n")
                 print("Trace computed : " +  str(i) + " " +  str(datetime.datetime.now()) +  " " + str(root.s) + " " + str(total_objects) + " " + str(curr_max_seen) + " fail : " + str(fail) + " sz added : " + str(sz_added) + " sz_removed : " + str(sz_removed) + " evicted : " +  str(evicted_))
                 self.log_file.flush()

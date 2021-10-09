@@ -14,7 +14,8 @@ class TrafficMixer():
         self.availableTcs   = self.available_traffic_classes()        
         self.trafficRatios  = [float(x) for x in args.traffic_ratio.split(":")]
         self.trafficClasses = [str(x) for x in args.traffic_classes.split(":")]
-        self.args = args
+
+        self.args     = args
         self.iat_gran = 200
         self.sd_gran  = 200000
 

@@ -54,7 +54,6 @@ class cache:
             self.curr_sz += n.s
 
             if self.root.id != self.prev_rid:
-                print("Root Id has changed ")
                 self.prev_rid = self.root.id
                 
             self.curr = n
@@ -71,7 +70,6 @@ class cache:
             self.root = p_c.add_child_first_pos(n, self.debug)
 
             if self.root.id != self.prev_rid:
-                print("Root Id has changed ")
                 self.prev_rid = self.root.id
                             
             self.curr = n

@@ -12,6 +12,8 @@ def gen_leaves(trace, sizes, items=None, initial_times=None):
     trace_list = []
     seen_ele   = defaultdict()
 
+    trace_length = len(trace)
+    
     for i in range(len(trace)):
 
         oid = trace[i]
@@ -28,8 +30,8 @@ def gen_leaves(trace, sizes, items=None, initial_times=None):
         
         trace_list.append(n)
 
-        if i%10000 == 0:
-            print("Number of objects parsed: ", i)
+        if i%100000 == 0:
+            print("Representing the cache as leaves of a tree ... ", int(float(i)/trace_length)*100, "% complete")
 
     return trace_list, total_sz
 
@@ -43,7 +45,7 @@ def generate_tree(trace_list):
 
     while len(st_tree[lvl]) > 1:
 
-        print("Parsing through lvl : ", lvl)
+        print("Creating tree, parsing level: ", lvl)
 
         for i in range(int(len(st_tree[lvl])/2)):
 
@@ -59,9 +61,6 @@ def generate_tree(trace_list):
             p_n.set_b()        
 
             st_tree[lvl+1].append(p_n)
-
-            if i%10000 == 0:
-                print("Number of nodes parsed : ", i)
                 
         if len(st_tree[lvl]) > 2*i+2:
 
