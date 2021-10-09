@@ -22,7 +22,7 @@ User can select a traffic model from the [available traffic models](#5-available
 
 2. Or, select multiple traffic models and provide the required traffic volumes for each selected option to create a custom traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
 
-The user can use a [Command Line Interface](21-command-line-interface) or a [GUI](#22-gui).
+The user can use a [Command Line Interface](#21-command-line-interface) or a [GUI](#22-gui).
 
 ### 2.1. Command line interface
 
