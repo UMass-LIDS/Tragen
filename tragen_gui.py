@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
-from PyQt5.QtCore import QDateTime, Qt, QTimer
 import PyQt5
+import PyQt5.QtWidgets
+
+from PyQt5.QtCore import QDateTime, Qt, QTimer
 from PyQt5.QtWidgets import (QApplication, QCheckBox, QComboBox, QDateTimeEdit,
         QDial, QDialog, QGridLayout, QGroupBox, QHBoxLayout, QLabel, QLineEdit,
         QProgressBar, QPushButton, QRadioButton, QScrollBar, QSizePolicy,
         QSlider, QSpinBox, QStyleFactory, QTableWidget, QTabWidget, QTextEdit,
                              QVBoxLayout, QWidget, QTableWidgetItem)
-import PyQt5.QtWidgets
-
 from traffic_mixer import *
 from trace_generator import *
 from arg_util import *
@@ -79,13 +79,19 @@ class WidgetGallery(QDialog):
         trafficRatio   = ""
         i = 0
         valid = True
+
         for row in self.columnAs:
+
             if row.checkState() == PyQt5.QtCore.Qt.Checked:
+
                 trafficClasses += str(self.trafficClasses[i]) + ":"
                 self.columnDs[i].setFlags(PyQt5.QtCore.Qt.ItemIsEditable | PyQt5.QtCore.Qt.ItemIsEnabled)
+
                 if self.columnDs[i].text() == "" or self.columnDs[i].text().isdigit() == False:
+
                     self.columnDs[i].setText("enter value and press enter")
                     valid = False
+
                 trafficRatio   += str(self.columnDs[i].text()) + ":"
             i += 1
 
@@ -108,12 +114,14 @@ class WidgetGallery(QDialog):
         self.trafficMixer         = TrafficMixer(self.args)
         self.traceGenerator       = TraceGenerator(self.trafficMixer, self.args)
         self.traceGenerator.generate()            
+
         
     def changeStyle(self, styleName):
 
         QApplication.setStyle(QStyleFactory.create(styleName))
         self.changePalette()
 
+        
     def changePalette(self):
 
         if (self.useStylePaletteCheckBox.isChecked()):
@@ -121,6 +129,7 @@ class WidgetGallery(QDialog):
         else:
             QApplication.setPalette(self.originalPalette)
 
+            
     def advanceProgressBar(self):
 
         try:
@@ -128,6 +137,7 @@ class WidgetGallery(QDialog):
         except:
             self.progressBar.setValue(0)
 
+            
     def createHRRadioButtons(self):
 
         self.topLeftGroupBox = QGroupBox("1. Select hitrate type: ")
@@ -159,9 +169,7 @@ class WidgetGallery(QDialog):
         layout.addWidget(self.byteRateButton)
         self.trafficVolumeBox.setLayout(layout)    
 
-
         
-
     def updateColumnToReqrate(self):
         self.tableWidget.setHorizontalHeaderLabels(['Traffic class', 'Description',  'Traffic volume \n (Requests/sec)'])
 
@@ -230,8 +238,6 @@ class WidgetGallery(QDialog):
             rowD.setTextAlignment(Qt.AlignHCenter)
             self.tableWidget.setItem(row_id, 2, rowD)
             self.columnDs.append(rowD)
-
-
             
         layout = QHBoxLayout()
         layout.addWidget(self.tableWidget)
@@ -239,9 +245,11 @@ class WidgetGallery(QDialog):
         
 
     def createProgressBar(self):
+
         self.progressBar = QProgressBar()
         self.progressBar.setRange(0, 100)
         self.progressBar.setValue(0)
+
         timer = QTimer(self)
         timer.timeout.connect(self.advanceProgressBar)
         timer.start(100)
