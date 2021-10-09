@@ -47,6 +47,9 @@ class FD():
             
     ## convolve oneself with fd2 and store result in fd_res
     def addition(self, fd2, fd_res, hitrate_type):
+
+        print("Computing the traffic model for the traffic mix")
+        
         if hitrate_type == "rhr":
             rate1 = self.req_rate
             rate2 = fd2.req_rate
@@ -55,14 +58,14 @@ class FD():
             rate2 = fd2.byte_rate
             
         self.fd_util.convolve_2d_fft(self.st, fd2.st, fd_res.st, rate1, rate2, self.sd_gran)
-        fd_res.no_reqs = self.no_reqs + fd2.no_reqs
-        fd_res.total_bytes = self.total_bytes + fd2.total_bytes
-        fd_res.start_tm = min(self.start_tm, fd2.start_tm)
-        fd_res.end_tm = max(self.end_tm, fd2.end_tm)
+        fd_res.no_reqs       = self.no_reqs + fd2.no_reqs
+        fd_res.total_bytes   = self.total_bytes + fd2.total_bytes
+        fd_res.start_tm      = min(self.start_tm, fd2.start_tm)
+        fd_res.end_tm        = max(self.end_tm, fd2.end_tm)
         fd_res.requests_miss = self.requests_miss + fd2.requests_miss
-        fd_res.bytes_miss = self.bytes_miss + fd2.bytes_miss
-        fd_res.req_rate = self.req_rate + fd2.req_rate
-        fd_res.byte_rate = self.byte_rate + fd2.byte_rate
+        fd_res.bytes_miss    = self.bytes_miss + fd2.bytes_miss
+        fd_res.req_rate      = self.req_rate + fd2.req_rate
+        fd_res.byte_rate     = self.byte_rate + fd2.byte_rate
         fd_res.shave_off_tail()
             
     def shave_off_tail(self):

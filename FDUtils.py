@@ -97,9 +97,7 @@ class FDUtils():
             for i in range(len(st12_fft)):
                 st12_fft[i] = st1_fft[i] * st2_fft[i]
 
-            st12_conv = fft.ifft(st12_fft)
-
-            print("convolving for time : ", t," and len : ", len(st12_conv))
+            st12_conv = fft.ifft(st12_fft)        
         
             for i in range(len(st12_conv)):            
                 st12[t][out_k[i]] = float(st12_conv[i]) * prob_t12[0]
