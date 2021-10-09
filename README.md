@@ -22,26 +22,9 @@ User can select a traffic model from the [available traffic models](#5-available
 
 2. Or, select multiple traffic models and provide the required traffic volumes for each selected option to create a custom traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
 
-The user can use a GUI or a Command Line Interface.
+The user can use a Command Line Interface ([CLI](21-command-line-interface-(cli))) or a [GUI](#22-gui).
 
-### 2.1. GUI
-
-Run the following command in the home directory of TRAGEN to display the GUI.
-   * ``` python3 tragen_gui.py ```
-
-Below is a screenshot of the GUI. 
-
-![GUI](images/TRAGEN_2.png)
-
-1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
-2. **Enter trace length**. Specify the number of requests in the synthetic trace.
-3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (Gbps).
-4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself.
-5. **Generate**. Hit the generate button and TRAGEN will start producing the synthetic trace.
-
-The produced synthetic trace is found in the directory ./OUTPUT/
-
-### 2.2. Command line interface (CLI)
+### 2.1. Command line interface (CLI)
 
 Run the following command in the home directory of TRAGEN to operate in the CLI mode.
    * ``` python3 tragen_cli.py -c <config_file> -d <output_directory> ```
@@ -78,6 +61,24 @@ The config file is to be in the json format. An example of a config file is:
 #### 2.2.2. Output
 
 The produced synthetic trace is in the specified <output_directory>.
+
+### 2.2. GUI
+
+Run the following command in the home directory of TRAGEN to display the GUI.
+   * ``` python3 tragen_gui.py ```
+
+Below is a screenshot of the GUI. 
+
+![GUI](images/TRAGEN_2.png)
+
+1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
+2. **Enter trace length**. Specify the number of requests in the synthetic trace.
+3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (Gbps).
+4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself.
+5. **Generate**. Hit the generate button and TRAGEN will start producing the synthetic trace.
+
+The produced synthetic trace is found in the directory ./OUTPUT/
+
 
 ## 3. Generate and submit traffic models
 
