@@ -31,7 +31,7 @@ def gen_leaves(trace, sizes, items=None, initial_times=None):
         trace_list.append(n)
 
         if i%100000 == 0:
-            print("Representing the cache as leaves of a tree ... ", int(float(i)/trace_length)*100, "% complete")
+            print("Representing the cache as leaves of a tree ... ", int((float(i)*100)/trace_length), "% complete")
 
     return trace_list, total_sz
 
