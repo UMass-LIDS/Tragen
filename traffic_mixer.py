@@ -126,7 +126,7 @@ class TrafficMixer():
         availableTcs = defaultdict()
         f = open("FOOTPRINT_DESCRIPTORS/available_fds.txt", "r")
         for l in f:
-            l = l.strip().strip().split(",")
+            l = l.strip().stratrip().split(",")
             tc = l[1]
             volume = float(l[3])
             req_rate = float(l[4])

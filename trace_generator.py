@@ -29,14 +29,17 @@ class TraceGenerator():
         fd.setupSampling(self.args.hitrate_type, 0, TB)
 
         MAX_SD = fd.sd_keys[-1]
-
+        
         ## sample 70 million objects
+
+        print("Sampling the object sizes that will be assigned to the initial objects in the LRU stack ...")
         n_sizes = []
         sizes   = []
         i = -1
         for i in range(len(OWV)-1):
             SZ = self.sz_dsts[trafficClasses[i]]
             n_sizes.extend(SZ.sample_keys(int(70*MIL * OWV[i])))
+            
         SZ = self.sz_dsts[trafficClasses[i+1]]
         n_sizes.extend(SZ.sample_keys(int(70*MIL) - len(n_sizes)))
         random.shuffle(n_sizes)
