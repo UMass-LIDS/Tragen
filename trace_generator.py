@@ -6,6 +6,8 @@ import os
 import time
 import sys
 
+
+## A class that defines the functions and objects required to generate a synthetic trace
 class TraceGenerator():
     def __init__(self, trafficMixer, args):
         self.trafficMixer = trafficMixer
@@ -14,6 +16,8 @@ class TraceGenerator():
         self.read_obj_size_dst()
         self.curr_iter = 0
         
+
+    ## Generate a synthetic trace
     def generate(self):
         fd = self.trafficMixer.FD_mix
 
@@ -54,7 +58,11 @@ class TraceGenerator():
 
         ## build the LRU stack
         trace = range(total_objects)
+
+        ## Represent the objects in LRU stack as leaves of a B+Tree
         trace_list, ss = gen_leaves(trace, sizes)
+
+        ## Construct the tree
         st_tree, lvl = generate_tree(trace_list)
         root = st_tree[lvl][0]
         root.is_root = True
@@ -81,6 +89,8 @@ class TraceGenerator():
         sampled_fds = []
 
         while curr != None and i <= int(self.args.length):
+
+            ## Generate 1000 samples -- makes the computation faster
             if k >= 1000:
                 stack_samples = fd.sample(1000)
                 k = 0
@@ -116,20 +126,24 @@ class TraceGenerator():
             if end_object == False:
 
                 try:
+                    ## Insert the object at the specified stack distance
                     descrepency, land, o_id = root.insertAt(sd, n, 0, curr.id, debug)                            
                 except:
                     print("sd : ", sd, root.s)
                 
                 local_uniq_bytes = 0
 
-                #debug.write("debugline : " + str(local_uniq_bytes) + " " + str(sd) + " " + str(root.s) + " " + str(descrepency) + "\n")
-
                 if n.parent != None :
+                    ## Rebalance the tree if the number of children of the parent node is greater than threshold
                     root = n.parent.rebalance(debug)
 
             else:
+                
+                ## As we remove objects from the top of the list, add objects towards the end of the list
+                ## so that the we have enough objects in the list i.e., size of the list is greater than MAX_SD
                 while root.s < MAX_SD:
 
+                    ## Require more objects
                     if (total_objects + 1) % (70*MIL) == 0:
                         sizes_n = sz_dst.sample_keys(70*MIL)
                         sizes.extend(sizes_n)
@@ -138,7 +152,9 @@ class TraceGenerator():
                     sz = sizes[total_objects]
                     sz_added += sz
                     n = node(total_objects, sz)
-                    n.set_b()        
+                    n.set_b()
+                    
+                    ## Insert the new object at the end of the list 
                     descrepency, x, y = root.insertAt(root.s - 1, n, 0, curr.id, debug)
             
                     if n.parent != None:
@@ -165,10 +181,15 @@ class TraceGenerator():
 
         with open("OUTPUT/" + str(tm_now) + "/command.txt", 'w') as fp:
             fp.write('\n'.join(sys.argv[1:]))
-        
-        self.assign_timestamps(c_trace, sizes, fd.byte_rate, f)
-        sys.exit(0)
             
+        ## Assign timestamp based on the byte-rate of the FD
+        self.assign_timestamps(c_trace, sizes, fd.byte_rate, f)
+
+        ## We are done!
+        sys.exit(0)
+
+
+    ## Assign timestamp based on the byte-rate of the FD
     def assign_timestamps(self, c_trace, sizes, byte_rate, f):
         timestamp = 0
         KB_added = 0
@@ -182,7 +203,8 @@ class TraceGenerator():
                 timestamp += 1
                 KB_added = 0
             
-            
+
+    ## Read object size distribution of the required traffic classes
     def read_obj_size_dst(self):
         self.sz_dsts = defaultdict()
 

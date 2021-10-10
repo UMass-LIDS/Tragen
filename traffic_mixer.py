@@ -8,7 +8,8 @@ from collections import defaultdict
 from scipy.optimize import linprog, brentq
 from fd import *
 
-    
+
+## A class that describes the methods to find the traffic model for the traffic mix
 class TrafficMixer():
     def __init__(self, args):
         self.availableTcs   = self.available_traffic_classes()        
@@ -16,6 +17,9 @@ class TrafficMixer():
         self.trafficClasses = [str(x) for x in args.traffic_classes.split(":")]
 
         self.args     = args
+
+        ## The footprint descriptors are computed at the granularity of 200s for IAT
+        ## and 200MB for Stack distance.
         self.iat_gran = 200
         self.sd_gran  = 200000
 
@@ -42,6 +46,7 @@ class TrafficMixer():
         self.mix()
 
 
+    ## Read footprint descriptors from file
     def readFDs(self):
         self.FDs = []
 
@@ -56,11 +61,13 @@ class TrafficMixer():
             fd.read_from_file(f, self.iat_gran, self.sd_gran)
             self.FDs.append(fd)
             
-        
+
+    ## Scale the footprint descriptor based on the traffic volume specified by the user
     def scale(self):
         for i in range(len(self.trafficClasses)):
             self.FDs[i].scale(self.trafficRatios[i], self.iat_gran)
 
+    ## Compute the traffic models for the traffic mix
     def mix(self):
         if len(self.trafficClasses) == 1:
             self.FD_mix = self.FDs[0]
@@ -77,6 +84,8 @@ class TrafficMixer():
 
         self.FD_mix = fd_prev_iter
 
+    ## Output a vector that finds the ratio of the number of objects per traffic class
+    ## that is to be present in the synthetic trace
     def object_weight_vector(self):
         self.weight_vector = []
 
@@ -111,7 +120,8 @@ class TrafficMixer():
         normalizing_factor = sum(self.weight_vector)
         self.weight_vector = [float(x)/normalizing_factor for x in self.weight_vector]
 
-            
+
+    ## Print the available traffic classes
     def available_traffic_classes(self):
         availableTcs = defaultdict()
         f = open("FOOTPRINT_DESCRIPTORS/available_fds.txt", "r")

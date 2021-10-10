@@ -338,9 +338,6 @@ class node:
 
             curr, s = curr.findNext()
                 
-        #sum_pps = sum(pps)
-        #pps = [float(p)/sum_pps for p in pps]
-        #n = choice(req_nodes, 1, p=pps)
         max_node.delete_node(debug)
         return max_node
         
@@ -491,16 +488,5 @@ class node:
             p.s -= val
             p = p.parent
 
-
-class lirsnode(node):
-    def __init__(self, obj_id, size):
-        node.__init__(self, obj_id, size)
-        self.lir = False
-        
-    def setLIR(self):
-        self.lir = True
-
-    def unsetLIR(self):
-        self.lir = False
                
     
