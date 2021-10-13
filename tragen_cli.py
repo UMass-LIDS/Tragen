@@ -8,7 +8,6 @@ if __name__ == "__main__":
     ## get arguments for TRAGEN
     parser = define_arguments()
     params = parser.parse_args()
-    args   = read_config_file(params.config_file)
     
     ## print available footprint descriptors and their default traffic volume
     if params.available_fds == True:
@@ -16,7 +15,10 @@ if __name__ == "__main__":
         sys.exit()
     elif params.example == True:
         show_example()
-        sys.exit()    
+        sys.exit()
+
+    ## Read the config  file
+    args   = read_config_file(params.config_file)
         
     ## generate representive footprint descriptor and object weight vector
     ## for the specified traffic mix.

@@ -1,4 +1,5 @@
 from constants import *
+from collections import defaultdict
 import argparse
 import json
 import sys
@@ -20,7 +21,15 @@ def define_arguments():
 
 def show_available_fds():
     print("available fds are: ")
+    availableTcs = defaultdict()
+    f = open("FOOTPRINT_DESCRIPTORS/available_fds.txt", "r")
+    for l in f:
+        l = l.strip().split(",")
+        tc = l[1]
+        print(tc)
+    return availableTcs
 
+    
 
 def show_example():
     print("Here's an example command : python3 tragen_cli.py -c <config_file> -d <output_directory>")
