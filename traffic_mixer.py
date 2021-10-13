@@ -96,8 +96,8 @@ class TrafficMixer():
                 l = l.strip().split(" ")
                 iat = int(l[0])
                 sd  = int(l[1])
-                rt = float(sd)/(iat + 100)
-                pr = float(l[2])
+                rt  = float(sd)/(iat + 100)
+                pr  = float(l[2])
                 urate += pr * rt
             return urate
 

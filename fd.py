@@ -118,6 +118,7 @@ class FD():
 
         self.sd_keys = list(SD.keys())
         self.sd_keys.sort()
+
         for sd in self.sd_keys:
             self.sd_vals.append(SD[sd])
 
