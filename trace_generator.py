@@ -187,10 +187,6 @@ class TraceGenerator():
             
         ## Assign timestamp based on the byte-rate of the FD
         self.assign_timestamps(c_trace, sizes, fd.byte_rate, f)
-
-        f = open("OUTPUT/" + str(tm_now) + "/sampled_fds.txt", "w")
-        f.write(",".join([str(x) for x in sampled_fds]))
-        f.close()
                 
         ## We are done!
         sys.exit(0)
