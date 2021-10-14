@@ -12,7 +12,7 @@ More detailed information about TRAGEN can be found in the [paper at this link](
 1. Install [python3](https://www.python.org/downloads/).
 
 2. Install the following packages - numpy, scipy, pyQt5 and datetime.
-   * ``` pip3 install numpy, scipy, pyQt5, datetime ```
+   * ``` pip3 install numpy, scipy, pyQt5, datetime, matplotlib ```
 
 ## 2. Use TRAGEN to generate synthetic traces
 
@@ -61,24 +61,6 @@ The config file is to be in the json format. An example of a config file is:
 #### 2.2.2. Output
 
 The produced synthetic trace is in the specified <output_directory>.
-
-### 2.2. GUI
-
-Run the following command in the home directory of TRAGEN to display the GUI.
-   * ``` python3 tragen_gui.py ```
-
-Below is a screenshot of the GUI. 
-
-![GUI](images/TRAGEN_2.png)
-
-1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
-2. **Enter trace length**. Specify the number of requests in the synthetic trace.
-3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (Gbps).
-4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself.
-5. **Generate**. Hit the generate button and TRAGEN will start producing the synthetic trace.
-
-The produced synthetic trace is found in the directory ./OUTPUT/
-
 
 ## 3. Generate and submit traffic models
 
