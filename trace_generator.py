@@ -9,12 +9,13 @@ import sys
 
 ## A class that defines the functions and objects required to generate a synthetic trace
 class TraceGenerator():
-    def __init__(self, trafficMixer, args):
+    def __init__(self, trafficMixer, args, printBox=None):
         self.trafficMixer = trafficMixer
         self.args = args
         self.log_file = open("OUTPUT/logfile.txt" , "w")
         self.read_obj_size_dst()
         self.curr_iter = 0
+        self.printBox = printBox
         
 
     ## Generate a synthetic trace
@@ -33,6 +34,10 @@ class TraceGenerator():
         ## sample 70 million objects
 
         print("Sampling the object sizes that will be assigned to the initial objects in the LRU stack ...")
+
+        if self.printBox != None:
+            self.printBox.setText("Sampling initial objects ...")
+        
         n_sizes = []
         sizes   = []
         i = -1
@@ -54,7 +59,10 @@ class TraceGenerator():
             total_objects += 1
             if total_objects % 100000 == 0:
                 print("Initializing the LRU stack ... ", int(100 * float(total_sz)/MAX_SD), "% complete")
-            
+
+                if self.printBox != None:
+                    self.printBox.setText("Initializing the LRU stack ... " + str(int(100 * float(total_sz)/MAX_SD)) + "% complete")
+                
 
         ## debug file
         debug = open("OUTPUT/debug.txt", "w")
@@ -63,10 +71,10 @@ class TraceGenerator():
         trace = range(total_objects)
 
         ## Represent the objects in LRU stack as leaves of a B+Tree
-        trace_list, ss = gen_leaves(trace, sizes)
-
+        trace_list, ss = gen_leaves(trace, sizes, self.printBox)
+                            
         ## Construct the tree
-        st_tree, lvl = generate_tree(trace_list)
+        st_tree, lvl = generate_tree(trace_list, self.printBox)
         root = st_tree[lvl][0]
         root.is_root = True
         curr = st_tree[0][0]
@@ -91,6 +99,9 @@ class TraceGenerator():
         sds_seen    = []
         sampled_fds = []
 
+        if self.printBox != None:
+            self.printBox.setText("Generating synthetic trace ...")
+        
         while curr != None and i <= int(self.args.length):
 
             ## Generate 1000 samples -- makes the computation faster
@@ -173,6 +184,8 @@ class TraceGenerator():
                 self.log_file.write("Trace computed : " +  str(i) + " " +  str(datetime.datetime.now()) +  " " + str(root.s) + " " + str(total_objects) + " " + str(curr_max_seen) + " fail : " + str(fail) + " sz added : " + str(sz_added) + " sz_removed : " + str(sz_removed) + "\n")
                 print("Trace computed : " +  str(i) + " " +  str(datetime.datetime.now()) +  " " + str(root.s) + " " + str(total_objects) + " " + str(curr_max_seen) + " fail : " + str(fail) + " sz added : " + str(sz_added) + " sz_removed : " + str(sz_removed) + " evicted : " +  str(evicted_))
                 self.log_file.flush()
+                if self.printBox != None:
+                    self.printBox.setText("Generating synthetic trace: " + str(i*100/self.args.length) + "% complete ...")
                 self.curr_iter = i
 
             curr = next
@@ -189,7 +202,9 @@ class TraceGenerator():
         self.assign_timestamps(c_trace, sizes, fd.byte_rate, f)
                 
         ## We are done!
-        sys.exit(0)
+        if self.printBox != None:
+            self.printBox.setText("Done! Ready again ...")
+        #sys.exit(0)
 
 
     ## Assign timestamp based on the byte-rate of the FD

@@ -9,9 +9,29 @@ from PyQt5.QtWidgets import (QApplication, QCheckBox, QComboBox, QDateTimeEdit,
         QProgressBar, QPushButton, QRadioButton, QScrollBar, QSizePolicy,
         QSlider, QSpinBox, QStyleFactory, QTableWidget, QTabWidget, QTextEdit,
                              QVBoxLayout, QWidget, QTableWidgetItem)
+from PyQt5.QtCore import QObject, QThread, pyqtSignal
 from traffic_mixer import *
 from trace_generator import *
 from arg_util import *
+
+
+## A worker class
+class Worker(QObject):
+    finished = pyqtSignal()
+    progress = pyqtSignal(int)
+
+    def setargs(self, args):
+        self.args = args
+
+    def setPrintBox(self, printBox):
+        self.printBox = printBox
+        
+    def run(self):
+        self.trafficMixer    = TrafficMixer(self.args, self.printBox)
+        self.traceGenerator  = TraceGenerator(self.trafficMixer, self.args, self.printBox)
+        self.traceGenerator.generate()                    
+        self.finished.emit()
+
 
 
 class WidgetGallery(QDialog):
@@ -48,13 +68,17 @@ class WidgetGallery(QDialog):
         self.submitButton = QPushButton("5. Generate")
         self.submitButton.clicked.connect(self.go)
         
+        self.printStatus = QLineEdit(self)
+        self.printStatus.setText("Ready ...")
+        self.printStatus.setEnabled(False)
+        
         mainLayout = QGridLayout()
         mainLayout.addWidget(self.topLeftGroupBox, 1, 0)
         mainLayout.addWidget(self.topRightGroupBox, 1, 1)
         mainLayout.addWidget(self.trafficVolumeBox, 2, 0, 1, 2)
         mainLayout.addWidget(self.bottomLeftTabWidget, 3, 0, 1, 3)
         mainLayout.addWidget(self.submitButton, 4, 0)
-        mainLayout.addWidget(self.progressBar, 4, 1)
+        mainLayout.addWidget(self.printStatus, 4, 1)
         
         self.setLayout(mainLayout)
         self.setWindowTitle("TRAGEN")
@@ -111,10 +135,28 @@ class WidgetGallery(QDialog):
         
         self.args.traffic_classes = trafficClasses
         self.args.traffic_ratio   = trafficRatio        
-        self.trafficMixer         = TrafficMixer(self.args)
-        self.traceGenerator       = TraceGenerator(self.trafficMixer, self.args)
-        self.traceGenerator.generate()            
 
+
+        self.thread = QThread()
+        self.worker = Worker()
+        self.worker.setargs(self.args)
+        self.worker.setPrintBox(self.printStatus)
+        self.worker.moveToThread(self.thread)
+        self.thread.started.connect(self.worker.run)
+        self.worker.finished.connect(self.thread.quit)
+        self.worker.finished.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+
+        self.thread.start()
+
+        self.thread.finished.connect(
+            lambda: self.submitButton.setEnabled(True)
+        )
+        self.thread.finished.connect(
+            lambda: self.submitButton.setText("Generate")
+        )
+
+        print("Done!")
         
     def changeStyle(self, styleName):
 

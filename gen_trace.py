@@ -4,7 +4,7 @@ from collections import defaultdict
 
 
 # Setup the objects in cache as leaves of a tree
-def gen_leaves(trace, sizes, items=None, initial_times=None):
+def gen_leaves(trace, sizes, printBox = None, items=None, initial_times=None):
 
     total_sz = 0    
     st_tree  = defaultdict(list)
@@ -33,11 +33,16 @@ def gen_leaves(trace, sizes, items=None, initial_times=None):
         if i%100000 == 0:
             print("Representing the cache as leaves of a tree ... ", int((float(i)*100)/trace_length), "% complete")
 
+            if printBox != None:
+                printBox.setText("Representing the cache as leaves of a tree ... " + str(int((float(i)*100)/trace_length)) + "% complete")
+
+
+            
     return trace_list, total_sz
 
 
 ## Create a tree structure using the objects in cache
-def generate_tree(trace_list):
+def generate_tree(trace_list, printBox=None):
 
     lvl     = 0
     st_tree = defaultdict(list)
@@ -47,6 +52,9 @@ def generate_tree(trace_list):
 
         print("Creating tree, parsing level: ", lvl)
 
+        if printBox != None:
+            printBox.setText("Creating tree, parsing level: " + str(lvl))
+        
         for i in range(int(len(st_tree[lvl])/2)):
 
             n1  = st_tree[lvl][2*i]

@@ -11,7 +11,10 @@ from fd import *
 
 ## A class that describes the methods to find the traffic model for the traffic mix
 class TrafficMixer():
-    def __init__(self, args):
+    def __init__(self, args, printBox = None):
+
+        self.printBox = printBox
+        
         self.availableTcs   = self.available_traffic_classes()        
         self.trafficRatios  = [float(x) for x in args.traffic_ratio.split(":")]
         self.trafficClasses = [str(x) for x in args.traffic_classes.split(":")]
@@ -48,6 +51,10 @@ class TrafficMixer():
 
     ## Read footprint descriptors from file
     def readFDs(self):
+
+        if self.printBox != None:
+            self.printBox.setText("Reading FDs from file ...")
+        
         self.FDs = []
 
         for i in range(len(self.trafficClasses)):
@@ -69,6 +76,11 @@ class TrafficMixer():
 
     ## Compute the traffic models for the traffic mix
     def mix(self):
+
+        if self.printBox != None:
+            self.printBox.setText("Computing FD for traffic mix ...")
+
+        
         if len(self.trafficClasses) == 1:
             self.FD_mix = self.FDs[0]
             return
