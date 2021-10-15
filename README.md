@@ -67,7 +67,7 @@ Run the following command in the home directory of TRAGEN to display the GUI.
 
 Below is a screenshot of the GUI. 
 
-![GUI](images/TRAGEN_2.png)
+![GUI](images/tragen.png)
 
 1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
 2. **Enter trace length**. Specify the number of requests in the synthetic trace.
