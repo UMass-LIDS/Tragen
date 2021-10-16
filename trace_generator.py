@@ -30,7 +30,7 @@ class TraceGenerator():
         fd.setupSampling(self.args.hitrate_type, 0, TB)
 
         MAX_SD = fd.sd_keys[-1]
-        MAX_SD = TB
+
         ## sample 70 million objects
 
         print("Sampling the object sizes that will be assigned to the initial objects in the LRU stack ...")
