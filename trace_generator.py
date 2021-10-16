@@ -30,7 +30,7 @@ class TraceGenerator():
         fd.setupSampling(self.args.hitrate_type, 0, TB)
 
         MAX_SD = fd.sd_keys[-1]
-        
+        MAX_SD = TB
         ## sample 70 million objects
 
         print("Sampling the object sizes that will be assigned to the initial objects in the LRU stack ...")
@@ -227,6 +227,6 @@ class TraceGenerator():
         self.sz_dsts = defaultdict()
 
         for c in self.trafficMixer.trafficClasses:
-            sz_dst = SZ_dst("FOOTPRINT_DESCRIPTORS/" + str(c) + "/iat_sz_all.txt", 0, TB)
+            sz_dst = SZ_dst("FOOTPRINT_DESCRIPTORS/" + str(c) + "/sz.txt", 0, TB)
             self.sz_dsts[c] = sz_dst
 

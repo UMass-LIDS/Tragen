@@ -45,7 +45,7 @@ class Arguments():
 
 
 def convertTo(traffic_class, traffic_volume, type="reqs"):
-    f = open("FOOTPRINT_DESCRIPTORS/" + traffic_class + "/footprint_desc_all.txt", "r")
+    f = open("FOOTPRINT_DESCRIPTORS/" + traffic_class + "/fd.txt", "r")
     l = f.readline()
     l = l.strip().split(" ")
 

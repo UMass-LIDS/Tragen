@@ -61,9 +61,9 @@ class TrafficMixer():
             fd = FD()
 
             if self.args.hitrate_type == "rhr":
-                f  = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/footprint_desc_all.txt", "r")
+                f  = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/fd.txt", "r")
             else:
-                f  = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/byte_footprint_desc_all.txt", "r")
+                f  = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/bfd.txt", "r")
 
             fd.read_from_file(f, self.iat_gran, self.sd_gran)
             self.FDs.append(fd)
@@ -114,11 +114,11 @@ class TrafficMixer():
             return urate
 
         for i in range(len(self.trafficClasses)):
-            f = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/footprint_desc_all.txt", "r")            
+            f = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/fd.txt", "r")            
             U = find_uniqrate(f)
             f.close()
 
-            f = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/iat_sz_all.txt", "r")
+            f = open("FOOTPRINT_DESCRIPTORS/" + self.trafficClasses[i] + "/sz.txt", "r")
             avg_obj_sz = 0
             for l in f:
                 l = l.strip().split(" ")
