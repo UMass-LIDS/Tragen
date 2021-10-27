@@ -101,14 +101,14 @@ timestamp, object_id, object_size (Kb)
 Use the following command,
    * ``` python3 traffic_modeler.py <path_to_original_trace> <output_dir>```
    
-The output_dir contains the footprint descriptor (fd.txt), byte-weighted footprint descriptors (bfd.txt) and the object size distribution (sz.txt) for the specified trace.
+The output_dir contains the footprint descriptor (fd.txt), byte-weighted footprint descriptors (bfd.txt), object size distribution (sz.txt) and the popularity distribution (popularity.txt) for the specified trace.
 
 #### 3.2. Submitting traffic models
 
 Consider adding your footprint descriptors to our repository. To do so,
 
 1. Create a directory FOOTPRINT_DESCRIPTOR/<your_traffic_class_name>.
-2. Copy the footprint descriptor (named as fd.txt), byte-weighted footprint descriptor (named as bfd.txt) and the object size distribution (sz.txt) to FOOTPRINT_DESCRIPTOR/<your_traffic_class_name>/.
+2. Copy the footprint descriptor (named as fd.txt), byte-weighted footprint descriptor (named as bfd.txt), object size distribution (sz.txt) and popularity distribution (popularity.txt) to FOOTPRINT_DESCRIPTOR/<your_traffic_class_name>/.
 3. Create an entry in [available traffic models](#5-available-traffic-models).
 4. Update the file FOOTPRINT_DESCRIPTOR/available_fds.txt
 
