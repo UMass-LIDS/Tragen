@@ -14,6 +14,7 @@ class TraceGenerator():
         self.args = args
         self.log_file = open("OUTPUT/logfile.txt" , "w")
         self.read_obj_size_dst()
+        self.read_popularity_dst()
         self.curr_iter = 0
         self.printBox = printBox
         
@@ -32,24 +33,33 @@ class TraceGenerator():
         MAX_SD = fd.sd_keys[-1]
 
         ## sample 70 million objects
-
         print("Sampling the object sizes that will be assigned to the initial objects in the LRU stack ...")
 
         if self.printBox != None:
             self.printBox.setText("Sampling initial objects ...")
         
-        n_sizes = []
-        sizes   = []
+        n_sizes        = []
+        sizes          = []
+        n_popularities = []
+        popularities   = []
         i = -1
         for i in range(len(OWV)-1):
             SZ = self.sz_dsts[trafficClasses[i]]
             n_sizes.extend(SZ.sample_keys(int(70*MIL * OWV[i])))
+
+            P = self.popularity_dsts[trafficClasses[i]]
+            n_popularities.extend(P.sample_keys(int(70*MIL * OMW[i])))
             
         SZ = self.sz_dsts[trafficClasses[i+1]]
         n_sizes.extend(SZ.sample_keys(int(70*MIL) - len(n_sizes)))
+        P = self.popularity_dsts[trafficClasses[i+1]]
+        n_popularities.extend(P.sample_keys(int(70*MIL) - len(n_popularities)))
+        
         random.shuffle(n_sizes)
+        random.shuffle(n_popularities)        
         sizes.extend(n_sizes)        
-
+        popularities.extend(n_popularities)
+        
         ## Now fill the objects such that the stack is 10TB
         total_sz = 0
         total_objects = 0
@@ -95,6 +105,7 @@ class TraceGenerator():
         sz_removed = 0
         evicted_   = 0
 
+        reqs_seen   = [0] * 70 * MIL
         sizes_seen  = []
         sds_seen    = []
         sampled_fds = []
@@ -112,28 +123,54 @@ class TraceGenerator():
             sd = stack_samples[k]
             k += 1
 
-            end_object = False
 
-            ## Introduce a new object
+            ## Rework this part -- can be made much more efficient
             if sd < 0:
+                pctile = 0
+            else:
+                pctile = 50 - int(fd.findPr(sd) * 50)
+
+            req_objects = []
+            no_objects  = 0
+            present     = curr
+            found_atleast_one = False
+            while no_objects < 50 or found_atleast_one == False:
+                if popularities[present.obj_id] - reqs_seen[present.obj_id] > 1:
+                    found_atleast_one = True                     
+                req_objects.append((popularities[present.obj_id] - reqs_seen[present.obj_id], present))
+                no_objects += 1
+                present = present.findNext()[0]
+
+            req_objects = sorted(req_objects, key= lambda x:x[0])
+            req_obj = req_objects[pctile][1]
+            req_count = req_objects[pctile][0]
+            if sd > 0:
+                while req_count <= 1:
+                    pctile += 1
+                    req_obj = req_objects[pctile][1]
+                    req_count = req_objects[pctile][0]
+            
+            end_object = False
+            if sd < 0:
+                ## Introduce a new object
                 end_object = True
-                sz_removed += curr.s
+                sz_removed += req_obj.s
                 evicted_ += 1
             else:
-                sd = random.randint(sd, sd+200000)         
+                sd = random.randint(sd, sd+200000) + 10000         
 
             if sd >= root.s:
                 fail += 1
                 continue
             
-            n  = node(curr.obj_id, curr.s)        
+            n  = node(req_obj.obj_id, req_obj.s)        
             n.set_b()            
 
             ## Add the object at the top of the list to the trace
             c_trace.append(n.obj_id)        
 
-            if curr.obj_id > curr_max_seen:
-                curr_max_seen = curr.obj_id
+            if req_obj.obj_id > curr_max_seen:
+                curr_max_seen = req_obj.obj_id
             
             sampled_fds.append(sd)
 
@@ -159,9 +196,31 @@ class TraceGenerator():
 
                     ## Require more objects
                     if (total_objects + 1) % (70*MIL) == 0:
-                        sizes_n = sz_dst.sample_keys(70*MIL)
-                        sizes.extend(sizes_n)
-                
+
+                        n_sizes        = []
+                        n_popularities = []
+                        i = -1
+                        for i in range(len(OWV)-1):
+                            SZ = self.sz_dsts[trafficClasses[i]]
+                            n_sizes.extend(SZ.sample_keys(int(70*MIL * OWV[i])))
+
+                            P = self.popularity_dsts[trafficClasses[i]]
+                            n_popularities.extend(P.sample_keys(int(70*MIL * OMW[i])))
+            
+                        SZ = self.sz_dsts[trafficClasses[i+1]]
+                        n_sizes.extend(SZ.sample_keys(int(70*MIL) - len(n_sizes)))
+                        P = self.popularity_dsts[trafficClasses[i+1]]
+                        n_popularities.extend(P.sample_keys(int(70*MIL) - len(n_popularities)))
+        
+                        random.shuffle(n_sizes)
+                        random.shuffle(n_popularities)        
+                        sizes.extend(n_sizes)        
+                        popularities.extend(n_popularities)
+                        
+                        reqs_seen_n = [0]*70*MIL
+                        reqs_seen.extend(reqs_seen_n)
+
+                        
                     total_objects += 1
                     sz = sizes[total_objects]
                     sz_added += sz
@@ -174,11 +233,13 @@ class TraceGenerator():
                     if n.parent != None:
                         root = n.parent.rebalance(debug)
 
-            next, success = curr.findNext()
-            while (next != None and next.b == 0) or success == -1:
-                next, success = next.findNext()
+            if curr.obj_id == req_obj.obj_id:
+                next, success = curr.findNext()
+                while (next != None and next.b == 0) or success == -1:
+                    next, success = next.findNext()
+                curr = next
 
-            del_nodes = curr.cleanUpAfterInsertion(sd, n, debug)        
+            del_nodes = req_obj.cleanUpAfterInsertion(sd, n, debug)        
 
             if i % 100000 == 0:
                 self.log_file.write("Trace computed : " +  str(i) + " " +  str(datetime.datetime.now()) +  " " + str(root.s) + " " + str(total_objects) + " " + str(curr_max_seen) + " fail : " + str(fail) + " sz added : " + str(sz_added) + " sz_removed : " + str(sz_removed) + "\n")
@@ -188,7 +249,7 @@ class TraceGenerator():
                     self.printBox.setText("Generating synthetic trace: " + str(i*100/self.args.length) + "% complete ...")
                 self.curr_iter = i
 
-            curr = next
+            reqs_seen[req_obj.obj_id] += 1
             i += 1
 
         tm_now = int(time.time())
@@ -204,7 +265,6 @@ class TraceGenerator():
         ## We are done!
         if self.printBox != None:
             self.printBox.setText("Done! Ready again ...")
-        #sys.exit(0)
 
 
     ## Assign timestamp based on the byte-rate of the FD
@@ -229,4 +289,13 @@ class TraceGenerator():
         for c in self.trafficMixer.trafficClasses:
             sz_dst = SZ_dst("FOOTPRINT_DESCRIPTORS/" + str(c) + "/sz.txt", 0, TB)
             self.sz_dsts[c] = sz_dst
+
+
+    ## Read object size distribution of the required traffic classes
+    def read_popularity_dst(self):
+        self.popularity_dsts = defaultdict()
+
+        for c in self.trafficMixer.trafficClasses:
+            popularity_dst = POPULARITY_dst("FOOTPRINT_DESCRIPTORS/" + str(c) + "/popularity.txt", 0, TB)
+            self.popularity_dsts[c] = popularity_dst
 

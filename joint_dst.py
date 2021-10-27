@@ -38,6 +38,44 @@ class SZ_dst:
     def sample_keys(self, n):
         return choices(self.p_keys, weights=self.pr,k=n)
 
+
+class POPULARITY_dst:
+
+    def __init__(self, i_file, min_val, max_val):
+        f = open(i_file, "r")
+        self.popularities = defaultdict(int)
+
+        l = f.readline()
+        key = int(l.strip())
+        sum_count = 0
+
+        for l in f:
+            l = l.strip().split(" ")
+            if len(l) == 1:
+                self.popularities[key] = sum_count
+                sum_count = 0
+                key = int(l[0])
+                if key > max_val:
+                    break                
+            else:
+                if key >= min_val:
+                    sum_count += float(l[1])
+
+        p_keys = list(self.popularities.keys())
+        p_vals = []
+        for k in p_keys:
+            p_vals.append(self.popularities[k])
+
+        sum_vals = sum(p_vals)
+        p_vals   = [float(x)/sum_vals for x in p_vals]
+
+        self.p_keys        = p_keys
+        self.probabilities = p_vals
+
+
+    def sample_keys(self, n):
+        return choices(self.p_keys, weights=self.probabilities,k=n)
+
                     
 
 class SampleFootPrint:
@@ -71,11 +109,23 @@ class SampleFootPrint:
         self.sd_keys.sort()
 
         i = 1
+        curr_pr = 0
+        self.sd_pr = defaultdict()
+
         for sd in self.sd_keys:
             self.sd_vals.append(self.SD[sd])
+            curr_pr += self.SD[sd]
+
+            if sd >= 0:
+                self.sd_pr[sd] = float(curr_pr - self.SD[-1])/(1 - self.SD[-1])
+
             self.sd_index[sd] = i
             i += 1            
                             
     def sample_keys(self, obj_sizes, sampled_sds, n):
         return choices(self.sd_keys, weights = self.sd_vals, k = n)
-    
+
+
+    def findPr(self, sd):
+        return self.sd_pr[sd]
+

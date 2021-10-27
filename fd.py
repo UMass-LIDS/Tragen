@@ -119,13 +119,22 @@ class FD():
         self.sd_keys = list(SD.keys())
         self.sd_keys.sort()
 
+        self.sd_pr = defaultdict()
+        curr_pr    = 0 
         for sd in self.sd_keys:
             self.sd_vals.append(SD[sd])
-
+            curr_pr += SD[sd]
+            if sd >= 0:
+                self.sd_pr[sd] = float(curr_pr - SD[-1])/(1 - SD[-1])
+            
         print("Finished reading the input models")
 
             
     def sample(self, n):
         return choices(self.sd_keys, weights=self.sd_vals, k=n)
+
+    
+    def findPr(self, sd):
+        return self.sd_pr[sd]
 
     
