@@ -153,3 +153,18 @@ def write_iat_sz_dst(f, obj_iats, obj_sizes):
             print("Parsed : ", j)        
     f.close()
 
+
+def write_popularity_dst(f, obj_reqs, obj_sizes):
+    total_objects = len(obj_sizes)
+    pop_sz = defaultdict(list)
+    for obj in obj_sizes:
+        popularity = obj_reqs[obj]
+        pop_sz[popularity].append(obj_sizes[obj])
+
+    for p in pop_sz:
+        f.write(str(p) + "\n")
+        keys, vals = convert_to_dict(pop_sz[p], total_objects)
+        for i in range(len(keys)):
+            f.write(str(keys[i]) + " " + str(vals[i]) + "\n")
+    f.close()
+

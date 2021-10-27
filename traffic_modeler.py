@@ -22,7 +22,7 @@ class cache:
     def initialize(self, inital_objects, sizes, initial_times):        
 
         ## create a tree structure
-        trace_list, self.curr_sz = gen_leaves(initial_objects, sizes, self.items, initial_times)
+        trace_list, self.curr_sz = gen_leaves(initial_objects, sizes, None, self.items, initial_times)
         st_tree, lvl = generate_tree(trace_list)
         root = st_tree[lvl][0]
         root.is_root = True
@@ -213,10 +213,15 @@ write_footprint_descriptor(f, total_reqs, total_bytes_req, start_tm, end_tm, tot
 f = open(output_directory + "/bfd.txt", "w")
 write_byte_footprint_descriptor(f, total_reqs, total_bytes_req, start_tm, end_tm, total_misses, bytes_miss, sd_byte_distances)
     
-## Write the joint probability distribution of average interarrival time for the object
-## and its size
+## Write the joint probability distribution of average interarrival
+## time for the object and its size
 f = open(output_directory + "/sz.txt", "w")
 write_iat_sz_dst(f, obj_iats, obj_sizes)
+
+## Write the joint probability distribution of the popularity of the object (i.e., the number of requests
+## made for the object) and the size of the object
+f = open(output_directory + "/popularity.txt", "w")
+write_popularity_dst(f, obj_reqs, obj_sizes)
 
 
 
