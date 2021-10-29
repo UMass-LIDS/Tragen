@@ -129,10 +129,7 @@ class TraceGenerator():
             req_objects = []
             no_objects  = 0
             present     = curr
-            found_atleast_one = False
-            while no_objects < 50 or found_atleast_one == False:
-                if popularities[present.obj_id] - reqs_seen[present.obj_id] > 1:
-                    found_atleast_one = True                     
+            while no_objects < 50:
                 req_objects.append((popularities[present.obj_id] - reqs_seen[present.obj_id], present))
                 no_objects += 1
                 present = present.findNext()[0]
@@ -160,7 +157,7 @@ class TraceGenerator():
                 sz_removed += req_obj.s
                 evicted_ += 1
             else:
-                sd = random.randint(sd, sd+200000) + curr.findUniqBytes(req_obj, debug)
+                sd = random.randint(sd, sd+200000)
 
             if sd >= root.s:
                 fail += 1
@@ -264,7 +261,7 @@ class TraceGenerator():
             
         ## Assign timestamp based on the byte-rate of the FD
         self.assign_timestamps(c_trace, sizes, fd.byte_rate, f)
-                
+
         ## We are done!
         if self.printBox != None:
             self.printBox.setText("Done! Ready again ...")

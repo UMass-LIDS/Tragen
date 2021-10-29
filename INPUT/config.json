@@ -1,5 +1,5 @@
 {
-    "Trace_length": "200000",
+    "Trace_length": "20000000",
     "Hitrate_type": "bhr",
     "Input_unit"  : "reqs/s",
     "Traffic_classes" : [
