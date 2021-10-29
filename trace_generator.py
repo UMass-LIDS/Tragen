@@ -48,7 +48,7 @@ class TraceGenerator():
             n_sizes.extend(SZ.sample_keys(int(70*MIL * OWV[i])))
 
             P = self.popularity_dsts[trafficClasses[i]]
-            n_popularities.extend(P.sample_keys(int(70*MIL * OMW[i])))
+            n_popularities.extend(P.sample_keys(int(70*MIL * OWV[i])))
             
         SZ = self.sz_dsts[trafficClasses[i+1]]
         n_sizes.extend(SZ.sample_keys(int(70*MIL) - len(n_sizes)))
@@ -125,10 +125,6 @@ class TraceGenerator():
 
 
             ## Rework this part -- can be made much more efficient
-            if sd < 0:
-                pctile = 0
-            else:
-                pctile = 50 - int(fd.findPr(sd) * 50)
 
             req_objects = []
             no_objects  = 0
@@ -141,14 +137,21 @@ class TraceGenerator():
                 no_objects += 1
                 present = present.findNext()[0]
 
+            if sd < 0:
+                pctile = 0
+            else:
+                pctile = len(req_objects) - int(fd.findPr(sd) * len(req_objects)) - 1
+                if pctile < 0:
+                    pctile = 0
+                
             req_objects = sorted(req_objects, key= lambda x:x[0])
             req_obj = req_objects[pctile][1]
             req_count = req_objects[pctile][0]
-            if sd > 0:
-                while req_count <= 1:
-                    pctile += 1
-                    req_obj = req_objects[pctile][1]
-                    req_count = req_objects[pctile][0]
+            # if sd > 0:
+            #     while req_count <= 1:
+            #         pctile += 1
+            #         req_obj = req_objects[pctile][1]
+            #         req_count = req_objects[pctile][0]
             
             end_object = False
             if sd < 0:
@@ -157,7 +160,7 @@ class TraceGenerator():
                 sz_removed += req_obj.s
                 evicted_ += 1
             else:
-                sd = random.randint(sd, sd+200000) + 10000         
+                sd = random.randint(sd, sd+200000) + curr.findUniqBytes(req_obj, debug)
 
             if sd >= root.s:
                 fail += 1
@@ -205,7 +208,7 @@ class TraceGenerator():
                             n_sizes.extend(SZ.sample_keys(int(70*MIL * OWV[i])))
 
                             P = self.popularity_dsts[trafficClasses[i]]
-                            n_popularities.extend(P.sample_keys(int(70*MIL * OMW[i])))
+                            n_popularities.extend(P.sample_keys(int(70*MIL * OWV[i])))
             
                         SZ = self.sz_dsts[trafficClasses[i+1]]
                         n_sizes.extend(SZ.sample_keys(int(70*MIL) - len(n_sizes)))
