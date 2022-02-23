@@ -77,10 +77,13 @@ class FDUtils():
             st2_c = st2_cond[self.floor(sorted(set(st2_cond.keys())), t)]
 
             # Convolution using fft
-            min_st1_s = int(min(st1_c.keys()))
-            max_st1_s = int(max(st1_c.keys()))
-            min_st2_s = int(min(st2_c.keys()))
-            max_st2_s = int(max(st2_c.keys()))
+            try:
+                min_st1_s = int(min(st1_c.keys()))
+                max_st1_s = int(max(st1_c.keys()))
+                min_st2_s = int(min(st2_c.keys()))
+                max_st2_s = int(max(st2_c.keys()))
+            except:
+                continue
             
             out_k = set([])
             out_k2 = set([])

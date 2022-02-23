@@ -86,6 +86,7 @@ class TrafficMixer():
             return
         
         for i in range(len(self.trafficClasses) - 1):
+
             if i == 0:
                 fd_prev_iter = FD()
                 self.FDs[i].addition(self.FDs[i+1], fd_prev_iter, self.args.hitrate_type)

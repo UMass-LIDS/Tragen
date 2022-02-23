@@ -67,7 +67,11 @@ class FD():
         fd_res.req_rate      = self.req_rate + fd2.req_rate
         fd_res.byte_rate     = self.byte_rate + fd2.byte_rate
         fd_res.shave_off_tail()
-            
+
+        fd_res.iat_gran = self.iat_gran
+        fd_res.sd_gran  = self.sd_gran
+
+        
     def shave_off_tail(self):
         pr = 0
         tail = []
