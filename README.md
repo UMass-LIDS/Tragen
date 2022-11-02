@@ -1,6 +1,6 @@
 ## TRAGEN
 
-Our new synthetic trace generation tool JEDI is available on the following [github link](https://github.com/UMass-LIDS/Jedi). JEDI capturers finer object-level prroperties of the original trace such as popularity distribution, request size distribution. Further, the access patterns of the objects will depend on its assigned property. The synthetic trace produced by JEDI is more similar to original trace than the synthetic trace produced by TRAGEN.
+ANNOUNCEMENT!!! Our new synthetic trace generation tool JEDI is available on the following [github link](https://github.com/UMass-LIDS/Jedi). JEDI capturers finer object-level prroperties of the original trace such as popularity distribution, request size distribution. Further, the access patterns of the objects will depend on its assigned property. The synthetic trace produced by JEDI is more similar to original trace than the synthetic trace produced by TRAGEN.
 
 TRAGEN is a tool that produces synthetic traces that have similar caching properties as the original traces in the sense that the two traces will have the same hitrates in a cache simulation. TRAGEN is seeded with realistic footprint descriptor models [[1]](#1) computed using original traces from Akamai's production CDNs. Footprint descriptor models capture the caching properties of the original traces. Using footprint descriptors, TRAGEN produces a synthetic trace that fits the model. 
 
