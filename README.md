@@ -24,7 +24,7 @@ User can select a traffic model from the [available traffic models](#5-available
 
 1. Select a model that is described as *Mix* to generate a synthetic trace that is representative of the original trace obtained from a server that is serving a mix of traffic classes. 
 
-2. Or, select multiple traffic models and provide the required traffic volumes for each selected option to create a custom traffic mix. For e.g., 10Gbps of traffic from Amazon mixed with 5Gbps of traffic from Microsoft.
+2. Or, select multiple traffic models and provide the required traffic volumes for each selected option to create a custom traffic mix. For e.g., 10GBps of traffic from Amazon mixed with 5GBps of traffic from Microsoft.
 
 The user can use a [Command Line Interface](#21-command-line-interface) or the [GUI](#22-GUI).
 
@@ -57,7 +57,7 @@ The config file is to be in the json format. An example of a config file is:
 
 1. **Trace_length**. Specify the number of requests in the synthetic trace.
 2. **Hitrate_type**. Enter rhr or bhr if the synthetic trace is to have Request hit rate or Byte hit rate, respectively, as the original.
-3. **Input_unit**. Enter the unit with which the traffic volume for each traffic class will be specified - reqs/s or Gbps.
+3. **Input_unit**. Enter the unit with which the traffic volume for each traffic class will be specified - reqs/s or GBps.
 4. **Traffic_classes**. Create a custom traffic mix by providing a list of traffic classes and their respective traffic volumes. 
    * traffic_class should be one of the traffic classes specified in the [available traffic models](#5-available-traffic-models).
    * traffic_volume field specifies the traffic volume for the traffic class.
@@ -75,7 +75,7 @@ Below is a screenshot of the GUI.
 
 1. **Select hit rate type**. Select if the synthetic trace is to have the same Request hit rate or Byte hit rate as the original.
 2. **Enter trace length**. Specify the number of requests in the synthetic trace.
-3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (Gbps).
+3. **Select traffic volume unit**. Select if the traffic volume field in the third column of the table will be input as requests/second or Gigabits per second (GBps).
 4. **Select required traffic classes and specify the traffic volume**. Select traffic classes from the first column of the table and specify a traffic volume for the selected traffic classes in the third column of the table. The second column provides a description of each choice. Each choice is either a pure traffic class  such as video, web, or social media traffic class. Or, it is a traffic mix itself.
 5. **Generate**. Hit the generate button and TRAGEN will start producing the synthetic trace.
 
@@ -88,10 +88,10 @@ The produced synthetic trace is found in the directory ./OUTPUT/
 
 #### 3.1 Generate traffic models
 
-A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. To generate traffic models for your own original traces provide the original trace in a file in the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size (in Kb). Now, each request is on a new line. For example,
+A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. To generate traffic models for your own original traces provide the original trace in a file in the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size (in KB). Now, each request is on a new line. For example,
 
 ```
-timestamp, object_id, object_size (Kb)
+timestamp, object_id, object_size (KB)
 1532702631,0,26624
 1532702631,1,12288
 1532702631,2,26624
