@@ -108,9 +108,9 @@ TC-3: Subset of tc trace that corresponds to web [Request hit rate link](https:/
 EU-5: Subset of eu trace corresponding to social media traffic [Request hit rate link](https://drive.google.com/file/d/1Uhvm-GJscyHvZgS9nHMTFgEkAE2Hx3Nj/view?usp=sharing), [Byte hit rate link](https://drive.google.com/file/d/1gsLJRwZxMJM4RKfGjGKuoqeEDxVaNzik/view?usp=sharing).
 
 
-## 3. Generate and submit traffic models
+## 4. Generate and submit traffic models
 
-#### 3.1 Generate traffic models
+#### 4.1 Generate traffic models
 
 A traffic model is a three-tuple consisting of a footprint descriptor, a byte-weighted footprint descriptor, and the object size distribution. To generate traffic models for your own original traces provide the original trace in a file in the following format. Each request in the trace is comma seperated list of timestamp, object_id, and object_size (in KB). Now, each request is on a new line. For example,
 
@@ -131,7 +131,7 @@ Use the following command,
    
 The output_dir contains the footprint descriptor (fd.txt), byte-weighted footprint descriptors (bfd.txt), object size distribution (sz.txt) and the popularity distribution (popularity.txt) for the specified trace.
 
-#### 3.2. Submitting traffic models
+#### 4.2. Submitting traffic models
 
 Consider adding your footprint descriptors to our repository. To do so,
 
@@ -140,12 +140,12 @@ Consider adding your footprint descriptors to our repository. To do so,
 3. Create an entry in [available traffic models](#5-available-traffic-models).
 4. Update the file FOOTPRINT_DESCRIPTOR/available_fds.txt
 
-## 4. Developer mode
+## 5. Developer mode
 
 We welcome users to suggest modifications to improve the quality of the code or add new features to the existing codebase. Use the developer branch to make edits and submit a change.
 
 
-## 5. Available traffic models
+## 6. Available traffic models
 
 The currently available traffic models are:
 
@@ -169,10 +169,10 @@ The currently available traffic models are:
 |17|TC-3|Subset of tc trace that corresponds to web|Web|
 
 
-## 6. References
+## 7. References
 
 <a id="1">[1]</a> 
 Sundarrajan, Aditya, Mingdong Feng, Mangesh Kasbekar, and Ramesh K. Sitaraman. "[Footprint descriptors: Theory and practice of cache provisioning in a global cdn](https://groups.cs.umass.edu/ramesh/wp-content/uploads/sites/3/2019/12/Footprint-Descriptors-Theory-and-Practice-of-Cache-Provisioning-in-a-Global-CDN.pdf)." In Proceedings of the 13th International Conference on emerging Networking EXperiments and Technologies, pp. 55-67. 2017.
 
-## 7. Acknowledgements
+## 8. Acknowledgements
 This work was supported in part by NSF grants CNS-1763617 and CNS-1901137.
